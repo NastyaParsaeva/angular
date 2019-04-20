@@ -1,4 +1,16 @@
-<p>
-  courses-page works!
-  <app-course-item></app-course-item>
-</p>
+<main class="main-content">
+  <app-search-control></app-search-control>
+  <app-new-course></app-new-course>
+  <div>
+    <app-course-item
+    *ngFor="let item of courseItems"
+    [id]="item.id"
+    [title]="item.title"
+    [creationDate]="item.creationDate"
+    [duration]="item.duration"
+    [description]="item.description"
+    (deleteCourseItem)="deleteCourseItem($event)"
+    ></app-course-item>
+  </div>
+  <app-load-more></app-load-more>
+</main>

@@ -1,3 +1,8 @@
-<p>
-  course-item works!
-</p>
+<div>
+  <p class="course-title">{{title}}</p>
+  <p class="course-duration">{{duration}}</p>
+  <p class="course-date">{{date}}</p>
+  <p class="course-description">{{description}}</p>
+  <button>Edit</button>
+  <button (click)="deleteItem($event)">Delete</button>
+</div>

@@ -1,0 +1,10 @@
+<!-- Search control with input and action button.
+Place input field, button find and add course button.
+Bind [()] input field with component property. 
+On Find click - console.log input value -->
+<div class="search-container">
+  <form>
+    <input type="search" placeholder="Search" name="search" [(ngModel)]="courseName">
+    <button type="submit" (click)="logCourseName()">Submit</button>
+  </form>
+</div>
