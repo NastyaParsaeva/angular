@@ -1,0 +1,32 @@
+.course-item {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    margin: 10px 0;
+    padding: 0 20px;
+    align-items: center;
+}
+
+.course-title {
+    font-weight: bold;
+    width: 20%;
+}
+
+.course-description {
+    width: 45%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 35px;
+}
+
+.edit-button,
+.delete-button {
+    border: 0;
+    height: 35px;
+    background: linear-gradient(to bottom, #4ae4db, #0faedc);
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+    margin-left: 20px;
+}

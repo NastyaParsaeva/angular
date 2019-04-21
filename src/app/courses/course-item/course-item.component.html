@@ -1,8 +1,8 @@
-<div>
+<div class="course-item">
+  <p class="course-date">{{creationDate.toLocaleString('ru-RU', {day: 'numeric', month: 'numeric', year: 'numeric' })}}</p>
   <p class="course-title">{{title}}</p>
-  <p class="course-duration">{{duration}}</p>
-  <p class="course-date">{{date}}</p>
   <p class="course-description">{{description}}</p>
-  <button>Edit</button>
-  <button (click)="deleteItem($event)">Delete</button>
+  <p class="course-duration">{{duration}} min</p>
+  <button class="edit-button">Edit</button>
+  <button class="delete-button" (click)="deleteItem($event)">Delete</button>
 </div>

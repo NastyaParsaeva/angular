@@ -1,0 +1,14 @@
+.load-more-container {
+    text-align: center;
+}
+.load-more {
+    border: 0;
+    height: 35px;
+    background: linear-gradient(to bottom, #4ae4db, #0faedc);
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    margin: 20px auto;
+
+}

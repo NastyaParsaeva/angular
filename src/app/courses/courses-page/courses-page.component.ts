@@ -13,7 +13,7 @@ export class CoursesPageComponent implements OnInit {
       id: 1005,
       title: 'Video Course 1',
       duration: 88,
-      creationDate: new Date('05.29.2018'),
+      creationDate: new Date(),
       description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
       incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
       quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 

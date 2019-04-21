@@ -6,9 +6,10 @@ import { CourseItemComponent } from './course-item/course-item.component';
 import { SearchControlComponent } from './search-control/search-control.component';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { LoadMoreComponent } from './load-more/load-more.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
-  declarations: [CoursesPageComponent, CourseItemComponent, SearchControlComponent, NewCourseComponent, LoadMoreComponent],
+  declarations: [BreadcrumbsComponent, CoursesPageComponent, CourseItemComponent, SearchControlComponent, NewCourseComponent, LoadMoreComponent],
   imports: [
     FormsModule,
     CommonModule

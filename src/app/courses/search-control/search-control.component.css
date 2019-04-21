@@ -1,0 +1,18 @@
+.search-field {
+    background-color: #ffffff;
+    border: 0;
+    height: 35px;
+    border-radius: 7px;
+    width: 800px;
+}
+
+.search-button {
+    border: 0;
+    height: 35px;
+    background: linear-gradient(to bottom, #4ae4db, #0faedc);
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    width: 150px;
+    margin-left: 20px;
+}

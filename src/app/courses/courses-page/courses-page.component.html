@@ -1,6 +1,9 @@
-<main class="main-content">
-  <app-search-control></app-search-control>
-  <app-new-course></app-new-course>
+<main class="courses-page-content">
+  <app-breadcrumbs></app-breadcrumbs>
+  <div class="search-and-add-course">
+    <app-search-control></app-search-control>
+    <app-new-course></app-new-course>
+  </div>
   <div>
     <app-course-item
     *ngFor="let item of courseItems"
