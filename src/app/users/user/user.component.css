@@ -1,0 +1,14 @@
+.log-out {
+    border: 0;
+    height: 35px;
+    background: linear-gradient(to bottom, #4ae4db, #0faedc);
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+    margin-left: 20px;
+}
+
+.user-login {
+    display: inline-block;
+}

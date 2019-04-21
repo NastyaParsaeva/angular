@@ -5,7 +5,6 @@
     top: 0;
     height: 60px;
     background-color: white;
-    text-align: center;
 }
 
 .header-content {
@@ -14,4 +13,5 @@
     width: 1200px;
     align-items: center;
     margin: 0 auto;
+    height: 60px;
 }
