@@ -65,6 +65,10 @@ export class CoursesPageComponent implements OnInit {
     ];
   }
 
+  isCoursesEmpty() {
+    return !(this.courseItems.length > 0);
+  }
+
   deleteCourseItem(courseItem) {
     console.log(courseItem.id);
   }

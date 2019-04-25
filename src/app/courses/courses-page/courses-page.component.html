@@ -5,6 +5,7 @@
     <app-new-course></app-new-course>
   </div>
   <div>
+    <p *ngIf="isCoursesEmpty()">No courses found</p>
     <app-course-item
     *ngFor="let item of courseItems"
     [id]="item.id"
@@ -15,5 +16,5 @@
     (deleteCourseItem)="deleteCourseItem($event)"
     ></app-course-item>
   </div>
-  <app-load-more></app-load-more>
+  <app-load-more *ngIf="!isCoursesEmpty()"></app-load-more>
 </main>
