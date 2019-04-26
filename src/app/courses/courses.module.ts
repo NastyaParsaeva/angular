@@ -8,9 +8,10 @@ import { NewCourseComponent } from './new-course/new-course.component';
 import { LoadMoreComponent } from './load-more/load-more.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ChangeCourseBorderDirective } from './change-course-border.directive';
+import { HighlightTopRatedDirective } from './highlight-top-rated.directive';
 
 @NgModule({
-  declarations: [BreadcrumbsComponent, CoursesPageComponent, CourseItemComponent, SearchControlComponent, NewCourseComponent, LoadMoreComponent, ChangeCourseBorderDirective],
+  declarations: [BreadcrumbsComponent, CoursesPageComponent, CourseItemComponent, SearchControlComponent, NewCourseComponent, LoadMoreComponent, ChangeCourseBorderDirective, HighlightTopRatedDirective],
   imports: [
     FormsModule,
     CommonModule

@@ -12,8 +12,10 @@ export class CourseItemComponent implements OnInit, CourseItem {
   @Input() creationDate: Date;
   @Input() duration: number;
   @Input() description: string;
+  @Input() isTopRated: boolean;
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
   }

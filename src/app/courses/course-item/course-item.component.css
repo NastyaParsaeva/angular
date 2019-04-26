@@ -9,8 +9,12 @@
 }
 
 .course-title {
-    font-weight: bold;
     width: 20%;
+}
+
+.course-title-text {
+    display: inline-block;
+    font-weight: bold;
 }
 
 .course-description {
@@ -30,4 +34,12 @@
     font-weight: bold;
     width: 100px;
     margin-left: 20px;
+}
+
+.star-icon {
+    width: 20px;
+}
+
+.highlighted {
+    background-color: #fefdbd;
 }
