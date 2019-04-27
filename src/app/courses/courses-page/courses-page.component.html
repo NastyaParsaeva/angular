@@ -1,13 +1,13 @@
 <main class="courses-page-content">
   <app-breadcrumbs></app-breadcrumbs>
   <div class="search-and-add-course">
-    <app-search-control></app-search-control>
+    <app-search-control (filterCourseItems)="filterCourseItems($event)"></app-search-control>
     <app-new-course></app-new-course>
   </div>
   <div>
     <p *ngIf="isCoursesEmpty()">No courses found</p>
     <app-course-item
-    *ngFor="let item of courseItems"
+    *ngFor="let item of filteredItems | orderBy: creationDate"
     [id]="item.id"
     [title]="item.title"
     [creationDate]="item.creationDate"

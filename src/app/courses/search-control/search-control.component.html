@@ -1,6 +1,6 @@
 <div class="search-container">
   <form>
     <input class="search-field" type="search" placeholder="Search" name="search" [(ngModel)]="courseName">
-    <button class="search-button" type="submit" (click)="logCourseName()">Search</button>
+    <button class="search-button" type="submit" (click)="filterItems($event)">Search</button>
   </form>
 </div>

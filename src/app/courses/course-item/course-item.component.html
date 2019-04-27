@@ -1,12 +1,11 @@
-<div [ngClass]="(isTopRated) ? ['course-item', 'highlighted'] : 'course-item'" appChangeCourseBorder>
-  <p class="course-date">{{creationDate.toLocaleString('ru-RU', {day: 'numeric', month: 'numeric', year: 'numeric' })}}</p>
+<div [ngClass]="(isTopRated) ? ['course-item', 'highlighted'] : 'course-item'" [appChangeCourseBorder]="creationDate">
+  <p class="course-date">{{creationDate | date : 'shortDate'}}</p>
   <div class="course-title">
-      <p class="course-title-text">{{title}}</p>
-      <img *appHighlightTopRated="isTopRated" class="star-icon" src="../../../assets/star3.png">
+      <p class="course-title-text">{{title | uppercase}}</p>
+      <img *appHighlightTopRated="isTopRated" class="star-icon" src="../../../assets/star0.png">
   </div>
-  
   <p class="course-description">{{description}}</p>
-  <p class="course-duration">{{duration}} min</p>
+  <p class="course-duration">{{duration | stringifyDuration}}</p>
   <button class="edit-button">Edit</button>
   <button class="delete-button" (click)="deleteItem($event)">Delete</button>
 </div>

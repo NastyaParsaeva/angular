@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseItem } from '../course-item.model';
+import { FilterByNamePipe } from '../filter-by-name.pipe';
 
 @Component({
   selector: 'app-courses-page',
@@ -9,8 +10,10 @@ import { CourseItem } from '../course-item.model';
 export class CoursesPageComponent implements OnInit {
 
   public courseItems: CourseItem[];
+  public filteredItems: CourseItem[];
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
     this.courseItems = [
@@ -65,15 +68,35 @@ export class CoursesPageComponent implements OnInit {
         nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
         mollit anim id est laborum.`,
         isTopRated: false
+      },
+      {
+        id: 1009,
+        title: 'Video Course 5',
+        duration: 55,
+        creationDate: new Date('07.15.2019'),
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+        nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
+        mollit anim id est laborum.`,
+        isTopRated: false
       }
     ];
+    this.filteredItems = [...this.courseItems];
   }
 
   isCoursesEmpty() {
     return !(this.courseItems.length > 0);
   }
 
-  deleteCourseItem(courseItem) {
+  deleteCourseItem(courseItem: CourseItem) {
+    console.log('parentDelete');
     console.log(courseItem.id);
+  }
+
+  filterCourseItems(str: string) {
+    console.log(str);
+    this.filteredItems = new FilterByNamePipe().transform(this.courseItems, str);
   }
 }

@@ -1,28 +1,33 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Renderer2, Input, AfterViewInit } from '@angular/core';
 
 @Directive({
   selector: '[appChangeCourseBorder]'
 })
-export class ChangeCourseBorderDirective {
-
-  constructor(private element: ElementRef, private renderer: Renderer2) { 
-    this.changeBorderColor('blue');
+export class ChangeCourseBorderDirective implements AfterViewInit{
+  
+  ngAfterViewInit(): void {
+    this.changeBorderColor();
   }
 
-  private defineColor(element): string {
-    
+  constructor(private element: ElementRef, private renderer: Renderer2) { 
+  }
+  
+  @Input('appChangeCourseBorder') date: Date;
+  
+  private defineColor(): string {
+    console.log(this.date);
     let moment = require('moment');
-    console.log(moment().format());
-    if (element.creationDate < Date() && element.creationDate >= moment(element.creationDate).subtract(14, 'days')) {
+    if ((this.date < (new Date())) && (moment(this.date) >= moment().subtract(14, 'days'))) {
       return 'green';
-    } else if (element.creationDate > Date()) {
-      return 'blue';
+    } else if (this.date > (new Date())) {
+      return 'red';
     }
       return null;    
   }
 
-  private changeBorderColor(color: string): void {
-    this.renderer.setStyle(this.element.nativeElement, 'border-color', color);
+  private changeBorderColor(): void {
+    console.log(this.date);
+    this.renderer.setStyle(this.element.nativeElement, 'border-color', this.defineColor());
   }
 
 
