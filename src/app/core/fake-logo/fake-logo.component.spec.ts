@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FakeLogoComponent } from './fake-logo.component';
 
 describe('FakeLogoComponent', () => {
-  let component: FakeLogoComponent;
+  let sut: FakeLogoComponent;
   let fixture: ComponentFixture<FakeLogoComponent>;
 
   beforeEach(async(() => {
@@ -15,11 +15,11 @@ describe('FakeLogoComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FakeLogoComponent);
-    component = fixture.componentInstance;
+    sut = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(sut).toBeTruthy();
   });
 });
