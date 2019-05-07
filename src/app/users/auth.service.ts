@@ -15,5 +15,7 @@ export class AuthService {
     return false;
   }
 
-  getUserInfo() { }
+  getUserInfo(): string { 
+    return null;
+  }
 }
