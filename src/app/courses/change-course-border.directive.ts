@@ -1,4 +1,5 @@
 import { Directive, ElementRef, Renderer2, Input, AfterViewInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Directive({
   selector: '[appChangeCourseBorder]'
@@ -16,7 +17,7 @@ export class ChangeCourseBorderDirective implements AfterViewInit{
   
   private defineColor(): string {
     console.log(this.date);
-    let moment = require('moment');
+    // let moment = require('moment');
     if ((this.date < (new Date())) && (moment(this.date) >= moment().subtract(14, 'days'))) {
       return 'green';
     } else if (this.date > (new Date())) {
