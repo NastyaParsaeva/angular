@@ -1,0 +1,43 @@
+.sign-in-container {
+    width: 600px;
+    background-color: white;
+    border-radius: 7px;
+    margin: 0 auto;
+}
+
+.login-header {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.login-form {
+    width: 450px;
+    margin: 0 auto;
+}
+
+.input-field {
+    width: 100%;
+    height: 35px;
+    border-radius: 7px;
+    border: solid #dedede 1px;
+    padding: 0 15px;
+}
+
+::placeholder {
+    color: #d7d7d7;
+}
+
+.input-capture {
+    margin: 15px 0 5px 0;
+}
+
+.sign-in-button {
+    border: 0;
+    height: 35px;
+    background: linear-gradient(to bottom, #4ae4db, #0faedc);
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    width: 50%;
+    margin-top: 20px;
+}

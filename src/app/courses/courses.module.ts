@@ -6,7 +6,6 @@ import { CourseItemComponent } from './course-item/course-item.component';
 import { SearchControlComponent } from './search-control/search-control.component';
 import { NewCourseComponent } from './new-course/new-course.component';
 import { LoadMoreComponent } from './load-more/load-more.component';
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ChangeCourseBorderDirective } from './change-course-border.directive';
 import { HighlightTopRatedDirective } from './highlight-top-rated.directive';
 import { StringifyDurationPipe } from './stringify-duration.pipe';
@@ -14,7 +13,7 @@ import { OrderByPipe } from './order-by.pipe';
 import { FilterByNamePipe } from './filter-by-name.pipe';
 
 @NgModule({
-  declarations: [BreadcrumbsComponent, CoursesPageComponent, CourseItemComponent, SearchControlComponent, NewCourseComponent, LoadMoreComponent, ChangeCourseBorderDirective, HighlightTopRatedDirective, StringifyDurationPipe, OrderByPipe, FilterByNamePipe],
+  declarations: [CoursesPageComponent, CourseItemComponent, SearchControlComponent, NewCourseComponent, LoadMoreComponent, ChangeCourseBorderDirective, HighlightTopRatedDirective, StringifyDurationPipe, OrderByPipe, FilterByNamePipe],
   imports: [
     FormsModule,
     CommonModule

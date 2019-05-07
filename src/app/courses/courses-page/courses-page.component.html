@@ -1,5 +1,4 @@
-<main class="courses-page-content">
-  <app-breadcrumbs></app-breadcrumbs>
+<!-- <main class="courses-page-content"> -->
   <div class="search-and-add-course">
     <app-search-control (filterCourseItems)="filterCourseItems($event)"></app-search-control>
     <app-new-course></app-new-course>
@@ -18,4 +17,4 @@
     ></app-course-item>
   </div>
   <app-load-more *ngIf="!isCoursesEmpty()"></app-load-more>
-</main>
+<!-- </main> -->
