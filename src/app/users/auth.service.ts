@@ -9,7 +9,9 @@ export class AuthService {
 
   login() { }
 
-  logout() { }
+  logout() { 
+    console.log('logout');
+  }
 
   isAuthentificated(): boolean { 
     return false;

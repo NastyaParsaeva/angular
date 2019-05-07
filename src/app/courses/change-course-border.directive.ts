@@ -27,7 +27,7 @@ export class ChangeCourseBorderDirective implements AfterViewInit{
   }
 
   private changeBorderColor(): void {
-    console.log(this.date);
+    // console.log(this.date);
     this.renderer.setStyle(this.element.nativeElement, 'border-color', this.defineColor());
   }
 

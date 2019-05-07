@@ -15,6 +15,16 @@
     [isTopRated]="item.isTopRated"
     (deleteCourseItem)="deleteCourseItem($event)"
     ></app-course-item>
+    
+    <!-- The Modal -->
+    <div id="deleteConfirmationModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Do you realy want to delete this course?</p>
+        <button>Yes</button>
+        <button>No</button>
+      </div>
+    </div>
   </div>
   <app-load-more *ngIf="!isCoursesEmpty()"></app-load-more>
 <!-- </main> -->
