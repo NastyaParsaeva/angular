@@ -1,13 +1,13 @@
 <div class="sign-in-container">
   <h2 class="login-header">Sign in</h2>
-  <form class="login-form">
-    <p class="login input-capture">Login</p>
-    <input class="login input-field" type="text" name="login" placeholder="Enter your login">
-    <p class="password input-capture">Password</p>
-    <input class="password input-field" type="text" name="password" placeholder="Enter your password">
-    <div>
-      <input class="sign-in-button" type="submit" value="Sign in">
-    </div>
-    
-  </form>
+  <!-- <form class="login-form" (submit)="loginUser($event)"> -->
+    <div class="login-form">
+      <p class="login input-capture">Login</p>
+      <input class="login input-field" type="text" name="login" placeholder="Enter your login">
+      <p class="password input-capture">Password</p>
+      <input class="password input-field" type="text" name="password" placeholder="Enter your password">
+      <!-- <input class="sign-in-button" type="submit" value="Sign in"> -->
+      <button class="sign-in-button" (click)="loginUser($event)">Sign in</button>
+    </div>  
+  <!-- </form> -->
 </div>

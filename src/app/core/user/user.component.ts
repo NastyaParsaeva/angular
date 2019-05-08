@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../shared/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -22,9 +22,13 @@ export class UserComponent implements OnInit, User {
     this.lastName = 'Parsaeva';
   }
 
-  logOut() {
+  logout() {
     console.log('log out from user')
     this.authService.logout();
+  }
+
+  isAuthentificated(): boolean {
+    return this.authService.isAuthentificated();
   }
 
 }
