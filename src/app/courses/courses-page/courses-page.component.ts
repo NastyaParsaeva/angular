@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { FilterByNamePipe } from '../filter-by-name.pipe';
 import { CoursesService } from '../courses.service';
+import * as angular from 'angular';
+// import * as angular from 'angular';
 // import * as angular from "angular";
 
 @Component({
@@ -14,7 +16,7 @@ export class CoursesPageComponent implements OnInit {
   public courseItems: CourseItem[];
   public filteredItems: CourseItem[];
   
-  // public modal = angular.element(document.getElementById('deleteConfirmationModal'));
+  public modal;
 
   constructor(private coursesService: CoursesService) { 
     this.courseItems = coursesService.getList();
@@ -22,6 +24,7 @@ export class CoursesPageComponent implements OnInit {
 
   ngOnInit() {
     this.filteredItems = [...this.courseItems];
+    this.modal = document.getElementById('deleteConfirmationModal');
   }
 
   isCoursesEmpty() {
@@ -30,11 +33,11 @@ export class CoursesPageComponent implements OnInit {
 
   showDeleteConfirmationPopup(courseItem: CourseItem): void {
     console.log(courseItem.id);
-    // this.modal.style.display = "block";
+    this.modal.style.display = "block";
   }
 
   closeDeleteConfirmationPopup(): void {
-    // this.modal.style.display = "none";
+    this.modal.style.display = "none";
   }
 
   deleteCourseItem(courseItem: CourseItem) {

@@ -13,16 +13,16 @@
     [duration]="item.duration"
     [description]="item.description"
     [isTopRated]="item.isTopRated"
-    (deleteCourseItem)="deleteCourseItem($event)"
+    (deleteCourseItem)="showDeleteConfirmationPopup($event)"
     ></app-course-item>
     
     <!-- The Modal -->
     <div id="deleteConfirmationModal" class="modal">
       <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" (click)="closeDeleteConfirmationPopup($event)">&times;</span>
         <p>Do you realy want to delete this course?</p>
-        <button>Yes</button>
-        <button>No</button>
+        <button class="yes-button" (click)="deleteCourseItem($event)">Yes</button>
+        <button class="no-button" (click)="closeDeleteConfirmationPopup($event)">No</button>
       </div>
     </div>
   </div>
