@@ -32,7 +32,6 @@ export class CoursesPageComponent implements OnInit {
   }
 
   showDeleteConfirmationPopup(courseItem: CourseItem): void {
-    console.log(courseItem.id);
     this.modal.style.display = "block";
   }
 
@@ -46,7 +45,6 @@ export class CoursesPageComponent implements OnInit {
   }
 
   filterCourseItems(str: string) {
-    console.log(str);
     this.filteredItems = new FilterByNamePipe().transform(this.courseItems, str);
   }
 }

@@ -7,7 +7,6 @@ import { CourseItem } from './course-item.model';
 export class FilterByNamePipe implements PipeTransform {
 
   transform(courseItems: CourseItem[], name?: string): CourseItem[] {
-    console.log(name);
     if (!name) {
       return courseItems;
     } else {

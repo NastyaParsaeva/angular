@@ -16,8 +16,6 @@ export class ChangeCourseBorderDirective implements AfterViewInit{
   @Input('appChangeCourseBorder') date: Date;
   
   private defineColor(): string {
-    console.log(this.date);
-    // let moment = require('moment');
     if ((this.date < (new Date())) && (moment(this.date) >= moment().subtract(14, 'days'))) {
       return 'green';
     } else if (this.date > (new Date())) {
@@ -27,7 +25,6 @@ export class ChangeCourseBorderDirective implements AfterViewInit{
   }
 
   private changeBorderColor(): void {
-    // console.log(this.date);
     this.renderer.setStyle(this.element.nativeElement, 'border-color', this.defineColor());
   }
 

@@ -93,7 +93,6 @@ export class CoursesService {
   }
 
   removeItem(courseId) {
-    console.log('remove item service' + courseId);
     let courseIndex = this.courses.findIndex(element => {
       if (element.id === courseId) {
         return true;

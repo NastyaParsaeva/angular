@@ -23,7 +23,6 @@ export class UserComponent implements OnInit, User {
   }
 
   logout() {
-    console.log('log out from user')
     this.authService.logout();
   }
 

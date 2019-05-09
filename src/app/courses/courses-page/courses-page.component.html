@@ -1,30 +1,28 @@
-<!-- <main class="courses-page-content"> -->
-  <div class="search-and-add-course">
-    <app-search-control (filterCourseItems)="filterCourseItems($event)"></app-search-control>
-    <app-new-course></app-new-course>
-  </div>
-  <div>
-    <p *ngIf="isCoursesEmpty()">No courses found</p>
-    <app-course-item
-    *ngFor="let item of filteredItems | orderBy: creationDate"
-    [id]="item.id"
-    [title]="item.title"
-    [creationDate]="item.creationDate"
-    [duration]="item.duration"
-    [description]="item.description"
-    [isTopRated]="item.isTopRated"
-    (deleteCourseItem)="showDeleteConfirmationPopup($event)"
-    ></app-course-item>
-    
-    <!-- The Modal -->
-    <div id="deleteConfirmationModal" class="modal">
-      <div class="modal-content">
-        <span class="close" (click)="closeDeleteConfirmationPopup($event)">&times;</span>
-        <p>Do you realy want to delete this course?</p>
-        <button class="yes-button" (click)="deleteCourseItem($event)">Yes</button>
-        <button class="no-button" (click)="closeDeleteConfirmationPopup($event)">No</button>
-      </div>
+<div class="search-and-add-course">
+  <app-search-control (filterCourseItems)="filterCourseItems($event)"></app-search-control>
+  <app-new-course></app-new-course>
+</div>
+<div>
+  <p *ngIf="isCoursesEmpty()">No courses found</p>
+  <app-course-item
+  *ngFor="let item of filteredItems | orderBy: creationDate"
+  [id]="item.id"
+  [title]="item.title"
+  [creationDate]="item.creationDate"
+  [duration]="item.duration"
+  [description]="item.description"
+  [isTopRated]="item.isTopRated"
+  (deleteCourseItem)="showDeleteConfirmationPopup($event)"
+  ></app-course-item>
+  
+  <!-- The Modal -->
+  <div id="deleteConfirmationModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeDeleteConfirmationPopup($event)">&times;</span>
+      <p>Do you realy want to delete this course?</p>
+      <button class="yes-button" (click)="deleteCourseItem($event)">Yes</button>
+      <button class="no-button" (click)="closeDeleteConfirmationPopup($event)">No</button>
     </div>
   </div>
-  <app-load-more *ngIf="!isCoursesEmpty()"></app-load-more>
-<!-- </main> -->
+</div>
+<app-load-more *ngIf="!isCoursesEmpty()"></app-load-more>
