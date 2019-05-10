@@ -5,7 +5,7 @@
 <div>
   <p *ngIf="isCoursesEmpty()">No courses found</p>
   <app-course-item
-  *ngFor="let item of filteredItems | orderBy: creationDate"
+  *ngFor="let item of filteredItems | orderBy: !creationDate"
   [id]="item.id"
   [title]="item.title"
   [creationDate]="item.creationDate"

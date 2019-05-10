@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
 import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
+import { AddCourseModule } from './add-course/add-course.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
     UsersModule,
     CoursesModule,
     LoginModule,
+    AddCourseModule,
     RouterModule.forRoot(ROUTES),
     SharedModule.forRoot()
   ],

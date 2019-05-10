@@ -1,0 +1,36 @@
+.add-course-container {
+    width: 800px;
+    background-color: white;
+    border-radius: 7px;
+    margin: 0 auto;
+}
+
+.new-course-form-title {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.add-course-form {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.button {
+    border: 0;
+    height: 35px;
+    background: linear-gradient(to bottom, #4ae4db, #0faedc);
+    border-radius: 7px;
+    color: white;
+    font-weight: bold;
+    width: 47%;
+    margin: 20px 7px 0 7px;
+}
+
+.input-field {
+    width: 95%;
+    height: 35px;
+    border-radius: 7px;
+    border: solid #dedede 1px;
+    padding: 0 15px;
+    margin: 0 auto;
+}

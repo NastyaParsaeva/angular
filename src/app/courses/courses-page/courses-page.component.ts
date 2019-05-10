@@ -15,6 +15,7 @@ export class CoursesPageComponent implements OnInit {
 
   public courseItems: CourseItem[];
   public filteredItems: CourseItem[];
+  public courseIdToDelete: number;
   
   public modal;
 
@@ -33,15 +34,18 @@ export class CoursesPageComponent implements OnInit {
 
   showDeleteConfirmationPopup(courseItem: CourseItem): void {
     this.modal.style.display = "block";
+    this.courseIdToDelete = courseItem.id;
   }
 
   closeDeleteConfirmationPopup(): void {
     this.modal.style.display = "none";
+    this.courseIdToDelete = null;
   }
 
-  deleteCourseItem(courseItem: CourseItem) {
-    this.coursesService.removeItem(courseItem.id);
+  deleteCourseItem() {
+    this.coursesService.removeItem(this.courseIdToDelete);
     this.filteredItems = this.coursesService.getList();
+    this.closeDeleteConfirmationPopup();
   }
 
   filterCourseItems(str: string) {
