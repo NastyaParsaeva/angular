@@ -21,10 +21,16 @@ export class CourseItemComponent implements OnInit, CourseItem {
   ngOnInit() {
   }
 
-  deleteItem() {
+  handleDeleteButtonClick() {
     this.deleteCourseItem.emit(this);
   }
 
+  handleEditButtonClick() {
+    this.editCourseItem.emit(this);
+  }
+
   @Output() deleteCourseItem: EventEmitter<CourseItem> = new EventEmitter<CourseItem>();
+
+  @Output() editCourseItem: EventEmitter<CourseItem> = new EventEmitter<CourseItem>();
   
 }

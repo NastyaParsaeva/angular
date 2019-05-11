@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course-page',
@@ -7,17 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCoursePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   saveCourse() {
     console.log('course saved');
+    this.router.navigateByUrl('courses');
   }
 
   cancel() {
     console.log('action canceled');
+    this.router.navigateByUrl('courses');
   }
 
 }

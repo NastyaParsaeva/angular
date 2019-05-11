@@ -12,6 +12,7 @@
   [duration]="item.duration"
   [description]="item.description"
   [isTopRated]="item.isTopRated"
+  (editCourseItem)="editCourseItem($event)"
   (deleteCourseItem)="showDeleteConfirmationPopup($event)"
   ></app-course-item>
   

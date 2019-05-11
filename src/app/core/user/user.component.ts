@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
 import { AuthService } from '../../shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -12,7 +13,7 @@ export class UserComponent implements OnInit, User {
   firstName: string;
   lastName: string;
 
-  constructor(private authService: AuthService) { 
+  constructor(private authService: AuthService, private router: Router) { 
     // this.authService = authService.getList();
   }
 
@@ -24,6 +25,7 @@ export class UserComponent implements OnInit, User {
 
   logout() {
     this.authService.logout();
+    this.router.navigateByUrl('login');
   }
 
   isAuthentificated(): boolean {

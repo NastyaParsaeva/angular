@@ -3,6 +3,7 @@ import { CourseItem } from '../course-item.model';
 import { FilterByNamePipe } from '../filter-by-name.pipe';
 import { CoursesService } from '../courses.service';
 import * as angular from 'angular';
+import { Router } from '@angular/router';
 // import * as angular from 'angular';
 // import * as angular from "angular";
 
@@ -19,7 +20,7 @@ export class CoursesPageComponent implements OnInit {
   
   public modal;
 
-  constructor(private coursesService: CoursesService) { 
+  constructor(private coursesService: CoursesService, private router: Router) { 
     this.courseItems = coursesService.getList();
   }
 
@@ -46,6 +47,11 @@ export class CoursesPageComponent implements OnInit {
     this.coursesService.removeItem(this.courseIdToDelete);
     this.filteredItems = this.coursesService.getList();
     this.closeDeleteConfirmationPopup();
+  }
+
+  editCourseItem() {
+    console.log('edit me');
+    // this.router.navigate( [''])
   }
 
   filterCourseItems(str: string) {

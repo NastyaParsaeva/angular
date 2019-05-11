@@ -6,7 +6,7 @@
   </div>
   <p class="course-description">{{description}}</p>
   <p class="course-duration">{{duration | stringifyDuration}}</p>
-  <button class="edit-button">Edit</button>
-  <button class="delete-button" (click)="deleteItem($event)">Delete</button>
+  <button class="edit-button" (click)="handleEditButtonClick($event)">Edit</button>
+  <button class="delete-button" (click)="handleDeleteButtonClick($event)">Delete</button>
 
 </div>

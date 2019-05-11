@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -8,7 +9,7 @@ import { AuthService } from 'src/app/shared/auth.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -16,6 +17,7 @@ export class LoginPageComponent implements OnInit {
   loginUser(event) {
     event.preventDefault();
     this.authService.login();
+    this.router.navigateByUrl('courses');
   }
 
 }

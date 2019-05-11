@@ -10,6 +10,7 @@ import { ROUTES } from './app.routes';
 import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
 import { AddCourseModule } from './add-course/add-course.module';
+import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AddCourseModule } from './add-course/add-course.module';
     CoursesModule,
     LoginModule,
     AddCourseModule,
+    PageNotFoundModule,
     RouterModule.forRoot(ROUTES),
     SharedModule.forRoot()
   ],
