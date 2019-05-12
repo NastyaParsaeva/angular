@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-course-authors',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./course-authors.component.css']
 })
 export class CourseAuthorsComponent implements OnInit {
+  
+  @Input() authors: String
 
   constructor() { }
 

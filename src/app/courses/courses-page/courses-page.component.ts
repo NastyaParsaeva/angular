@@ -49,9 +49,9 @@ export class CoursesPageComponent implements OnInit {
     this.closeDeleteConfirmationPopup();
   }
 
-  editCourseItem() {
+  editCourseItem(courseItem: CourseItem) {
     console.log('edit me');
-    // this.router.navigate( [''])
+    this.router.navigate( ['courses', courseItem.id]);
   }
 
   filterCourseItems(str: string) {
