@@ -14,6 +14,6 @@ export class NewCourseComponent implements OnInit {
   }
 
   OpenAddCoursePage() {
-    this.router.navigateByUrl('/newcourse');
+    this.router.navigateByUrl('/courses/new');
   }
 }

@@ -17,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   loginUser(event) {
     event.preventDefault();
     this.authService.login();
-    this.router.navigateByUrl('courses');
+    this.router.navigateByUrl('');
   }
 
 }

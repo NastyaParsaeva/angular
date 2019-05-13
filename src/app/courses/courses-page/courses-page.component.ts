@@ -51,7 +51,7 @@ export class CoursesPageComponent implements OnInit {
 
   editCourseItem(courseItem: CourseItem) {
     console.log('edit me');
-    this.router.navigate( ['courses', courseItem.id]);
+    this.router.navigate( ['courses/', courseItem.id]);
   }
 
   filterCourseItems(str: string) {

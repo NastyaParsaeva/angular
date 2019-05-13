@@ -14,7 +14,7 @@ import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -24,10 +24,11 @@ import { PageNotFoundModule } from './page-not-found/page-not-found.module';
     LoginModule,
     AddCourseModule,
     PageNotFoundModule,
+    RouterModule,
     RouterModule.forRoot(ROUTES),
     SharedModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

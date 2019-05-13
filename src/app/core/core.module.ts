@@ -5,12 +5,14 @@ import { FooterComponent } from './footer/footer.component';
 import { FakeLogoComponent } from './fake-logo/fake-logo.component';
 import { UsersModule } from '../users/users.module';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HeaderComponent, BreadcrumbsComponent, FooterComponent, FakeLogoComponent],
   imports: [
     CommonModule,
-    UsersModule
+    UsersModule,
+    RouterModule
   ],
   exports: [HeaderComponent, BreadcrumbsComponent, FooterComponent],
 })

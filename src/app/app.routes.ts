@@ -7,7 +7,7 @@ import { PageNotFoundPageComponent } from './page-not-found/page-not-found-page/
 export const ROUTES: Route[] = [
     { path: 'courses', component: CoursesPageComponent },
     { path: 'login', component: LoginPageComponent},
-    { path: 'newcourse', component: AddCoursePageComponent},
+    { path: 'courses/new', component: AddCoursePageComponent},
     { path: '', redirectTo: 'courses', pathMatch: 'full' },
     { path: 'courses/:id', component: AddCoursePageComponent, data: { 'security_key': 'key_here'} },
     { path: '**', component: PageNotFoundPageComponent }
