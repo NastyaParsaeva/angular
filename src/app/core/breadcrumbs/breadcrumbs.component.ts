@@ -23,7 +23,6 @@ export class BreadcrumbsComponent implements OnInit {
     ).subscribe(() => {
       let root: ActivatedRoute = this.activatedRoute.root;
       this.breadcrumbs = this.getBreadcrumbs(root);
-      console.log(this.breadcrumbs);
   });
   }
 
@@ -50,10 +49,6 @@ export class BreadcrumbsComponent implements OnInit {
         // child.snapshot
         breadcrumbs.push(this.createBreadcrumbItem(child.snapshot, url));  
       }
-      // url += `/${routeURL}`;
-      // // child.snapshot
-      // breadcrumbs.push(this.createBreadcrumbItem(child.snapshot, url));
-      console.log(breadcrumbs);
       return this.getBreadcrumbs(child, url, breadcrumbs);
     }
   }

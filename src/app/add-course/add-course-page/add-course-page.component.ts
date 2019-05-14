@@ -17,7 +17,6 @@ export class AddCoursePageComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe( (data) => {
       this.routeParams.id = data['id']
-      console.log(this.routeParams.id);
     })
     this.courseItem = this.coursesService.getItemById(this.routeParams.id);
   }
