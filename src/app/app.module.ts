@@ -11,12 +11,10 @@ import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
 import { AddCourseModule } from './add-course/add-course.module';
 import { PageNotFoundModule } from './page-not-found/page-not-found.module';
-import { CoursesPageContainerComponent } from './courses-page-container/courses-page-container.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CoursesPageContainerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
