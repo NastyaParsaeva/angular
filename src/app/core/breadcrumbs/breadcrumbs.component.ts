@@ -45,10 +45,15 @@ export class BreadcrumbsComponent implements OnInit {
       }
 
       let routeURL: string = child.snapshot.url.map(segment => segment.path).join("/");
-      url += `/${routeURL}`;
-      // child.snapshot
-      breadcrumbs.push(this.createBreadcrumbItem(child.snapshot, url));
-
+      if (routeURL !== '')  {
+        url += `/${routeURL}`;
+        // child.snapshot
+        breadcrumbs.push(this.createBreadcrumbItem(child.snapshot, url));  
+      }
+      // url += `/${routeURL}`;
+      // // child.snapshot
+      // breadcrumbs.push(this.createBreadcrumbItem(child.snapshot, url));
+      console.log(breadcrumbs);
       return this.getBreadcrumbs(child, url, breadcrumbs);
     }
   }
