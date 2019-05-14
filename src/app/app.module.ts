@@ -11,6 +11,7 @@ import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
 import { AddCourseModule } from './add-course/add-course.module';
 import { PageNotFoundModule } from './page-not-found/page-not-found.module';
+import { CoursesRootModule } from './courses-root/courses-root.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PageNotFoundModule } from './page-not-found/page-not-found.module';
     AddCourseModule,
     PageNotFoundModule,
     RouterModule,
+    CoursesRootModule,
     RouterModule.forRoot(ROUTES),
     SharedModule.forRoot()
   ],

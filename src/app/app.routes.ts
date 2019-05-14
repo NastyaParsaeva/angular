@@ -5,18 +5,20 @@ import { AddCoursePageComponent } from './add-course/add-course-page/add-course-
 import { PageNotFoundPageComponent } from './page-not-found/page-not-found-page/page-not-found-page.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { CoursesRootPageComponent } from './courses-root/courses-root-page/courses-root-page.component';
 
 export const ROUTES: Route[] = [
     { 
         path: 'courses', 
-        component: CoursesPageComponent ,
+        component: CoursesRootPageComponent,
         canActivate: [ AuthGuard ],
         data: { breadcrumb: 'Courses'},
         children: [
-            // {
-            //     path: '',
-                
-            // }
+            {
+                path: '',
+                component: CoursesPageComponent
+                // data: {}
+            },
             {
                 path: 'new',
                 component: AddCoursePageComponent,
