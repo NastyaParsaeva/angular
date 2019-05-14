@@ -11,12 +11,15 @@ import { HighlightTopRatedDirective } from './highlight-top-rated.directive';
 import { StringifyDurationPipe } from './stringify-duration.pipe';
 import { OrderByPipe } from './order-by.pipe';
 import { FilterByNamePipe } from './filter-by-name.pipe';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from '../app.routes';
 
 @NgModule({
   declarations: [CoursesPageComponent, CourseItemComponent, SearchControlComponent, NewCourseComponent, LoadMoreComponent, ChangeCourseBorderDirective, HighlightTopRatedDirective, StringifyDurationPipe, OrderByPipe, FilterByNamePipe],
   imports: [
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     CoursesPageComponent

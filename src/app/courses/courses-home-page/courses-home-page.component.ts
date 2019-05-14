@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { FilterByNamePipe } from '../filter-by-name.pipe';
 import { CoursesService } from '../courses.service';
-import * as angular from 'angular';
 import { Router } from '@angular/router';
-// import * as angular from 'angular';
-// import * as angular from "angular";
 
 @Component({
   selector: 'app-courses-page',

@@ -1,12 +1,20 @@
-.breadcrumbs {
+.breadcrumbs-container {
     padding-top: 20px;
 }
 
-/* .bradcrumbs-item {
-    display: none;
-} */
+.breadcrumb-list {
+    list-style-type: none;
+}
+
+.breadcrumb-item-container {
+    display: inline-block;
+    padding: 10px;
+}
 
 .active {
-    color:red;
     display: inline;
+    pointer-events: none;
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
 }
