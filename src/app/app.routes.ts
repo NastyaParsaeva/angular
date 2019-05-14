@@ -10,6 +10,7 @@ export const ROUTES: Route[] = [
         path: 'courses', 
         component: CoursesPageComponent ,
         canActivate: [ AuthGuard ],
+        data: { breadcrumb: 'Courses'}
     },
     { 
         path: 'login', 
@@ -19,6 +20,7 @@ export const ROUTES: Route[] = [
         path: 'courses/new', 
         component: AddCoursePageComponent,
         canActivate: [ AuthGuard ],
+        data: { breadcrumb: 'New Course'}
     },
     { 
         path: '', 
@@ -28,8 +30,10 @@ export const ROUTES: Route[] = [
     { 
         path: 'courses/:id', 
         component: AddCoursePageComponent, 
-        data: { 'security_key': 'key_here'} ,
+        // data: { 'security_key': 'key_here'} ,
         canActivate: [ AuthGuard ],
+        data: { breadcrumb: ':id'}
+
     },
     { 
         path: '**', 
