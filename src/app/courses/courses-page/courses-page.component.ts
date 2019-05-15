@@ -13,7 +13,8 @@ export class CoursesPageComponent implements OnInit {
   
   public courseItems: CourseItem[];
   public courseIdToDelete: number;
-  public currentPage: number;
+  public currentPage: number = 1;
+  public ItemsPerPage: number = 10;
   
   public modal;
 
@@ -25,10 +26,16 @@ export class CoursesPageComponent implements OnInit {
   }
 
   getCourses() {
-    this.coursesService.getList().subscribe(response => {
+    // console.log(this.coursesService.getList());
+    this.coursesService.getCourses(this.currentPage, this.ItemsPerPage).subscribe(response => {
       console.log(response);
       this.courseItems = response;
     });
+  }
+
+  showMoreCourses() {
+    this.currentPage++;
+    this.getCourses();
   }
 
   isCoursesEmpty() {
@@ -58,8 +65,7 @@ export class CoursesPageComponent implements OnInit {
     this.coursesService.getFilteredItems(queryString).subscribe(response => {
       this.courseItems = response;
       console.log(response);
-    })
-    // this.filteredItems = new FilterByNamePipe().transform(this.courseItems, str);
+    });
   }
 
   // ngOnDestroy(): void {

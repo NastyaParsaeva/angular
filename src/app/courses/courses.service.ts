@@ -154,8 +154,16 @@ export class CoursesService {
 
   constructor(private http: HttpClient) { }
 
-  getList(): Observable<CourseItem[]> {
-    return this.http.get<CourseItem[]>(BASE_URL)
+  getCourses(pageNumber: number = null, itemsPerPage: number = null): Observable<CourseItem[]> {
+    // console.log(`${BASE_URL}?start=${pageNumber*itemsPerPage+1}&count=${itemsPerPage}`);
+
+    if (pageNumber !== null && itemsPerPage !== null) {
+      console.log(`${BASE_URL}?start=${(pageNumber - 1)*itemsPerPage}&count=${itemsPerPage}`);
+      return this.http.get<CourseItem[]>(`${BASE_URL}?start=${pageNumber*itemsPerPage+1}&count=${itemsPerPage}`);
+    }
+    console.log(BASE_URL);
+    return this.http.get<CourseItem[]>(BASE_URL);
+    
   }
 
   getFilteredItems(textFragment: string): Observable<CourseItem[]> {

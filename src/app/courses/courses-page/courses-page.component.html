@@ -31,4 +31,4 @@
     </div>
   </div>
 
-<app-load-more *ngIf="!isCoursesEmpty()"></app-load-more>
+<app-load-more *ngIf="!isCoursesEmpty()" (showMoreCourses)="showMoreCourses($event)"></app-load-more>
