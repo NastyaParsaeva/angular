@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { FilterByNamePipe } from '../filter-by-name.pipe';
 import { CoursesService } from '../courses.service';
@@ -10,20 +10,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./courses-page.component.css']
 })
 export class CoursesPageComponent implements OnInit {
-
+  
   public courseItems: CourseItem[];
-  public filteredItems: CourseItem[];
   public courseIdToDelete: number;
+  // public 
+  public currentPage: number;
   
   public modal;
 
-  constructor(private coursesService: CoursesService, private router: Router) { 
-    this.courseItems = coursesService.getList();
-  }
+  constructor(private coursesService: CoursesService, private router: Router) { }
 
   ngOnInit() {
-    this.filteredItems = [...this.courseItems];
+    this.getCourses();
     this.modal = document.getElementById('deleteConfirmationModal');
+  }
+
+  getCourses() {
+    this.coursesService.getList().subscribe(response => {
+      console.log(response);
+      this.courseItems = response;
+    });
   }
 
   isCoursesEmpty() {
@@ -42,7 +48,6 @@ export class CoursesPageComponent implements OnInit {
 
   deleteCourseItem() {
     this.coursesService.removeItem(this.courseIdToDelete);
-    this.filteredItems = this.coursesService.getList();
     this.closeDeleteConfirmationPopup();
   }
 
@@ -50,7 +55,15 @@ export class CoursesPageComponent implements OnInit {
     this.router.navigate( ['courses/', courseItem.id]);
   }
 
-  filterCourseItems(str: string) {
-    this.filteredItems = new FilterByNamePipe().transform(this.courseItems, str);
+  filterCourseItems(queryString: string) {
+    this.coursesService.getFilteredItems(queryString).subscribe(response => {
+      this.courseItems = response;
+      console.log(response);
+    })
+    // this.filteredItems = new FilterByNamePipe().transform(this.courseItems, str);
   }
+
+  // ngOnDestroy(): void {
+  //   throw new Error("Method not implemented.");
+  // }
 }

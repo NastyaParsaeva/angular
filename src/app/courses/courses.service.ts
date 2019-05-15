@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CourseItemComponent } from './course-item/course-item.component';
+import { HttpClient } from '@angular/common/http';
+import { CourseItem } from './course-item.model';
+import { Observable } from 'rxjs';
+
+const BASE_URL = 'http://localhost:3004/courses';
 
 @Injectable({
   providedIn: 'root'
@@ -147,10 +152,14 @@ export class CoursesService {
     }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getList() {
-    return this.courses;
+  getList(): Observable<CourseItem[]> {
+    return this.http.get<CourseItem[]>(BASE_URL)
+  }
+
+  getFilteredItems(textFragment: string): Observable<CourseItem[]> {
+    return this.http.get<CourseItem[]>(BASE_URL, {params: {textFragment}});
   }
 
   createCourse() {

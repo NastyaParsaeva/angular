@@ -9,11 +9,11 @@
 <div>
   <p *ngIf="isCoursesEmpty()">No courses found</p>
   <app-course-item
-  *ngFor="let item of filteredItems | orderBy: !creationDate"
+  *ngFor="let item of courseItems | orderBy: !creationDate"
   [id]="item.id"
-  [title]="item.title"
-  [creationDate]="item.creationDate"
-  [duration]="item.duration"
+  [title]="item.name"
+  [creationDate]="item.date"
+  [duration]="item.length"
   [description]="item.description"
   [isTopRated]="item.isTopRated"
   (editCourseItem)="editCourseItem($event)"
