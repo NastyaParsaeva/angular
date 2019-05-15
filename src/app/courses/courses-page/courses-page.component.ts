@@ -13,7 +13,6 @@ export class CoursesPageComponent implements OnInit {
   
   public courseItems: CourseItem[];
   public courseIdToDelete: number;
-  // public 
   public currentPage: number;
   
   public modal;

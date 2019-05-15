@@ -19,6 +19,7 @@
   (editCourseItem)="editCourseItem($event)"
   (deleteCourseItem)="showDeleteConfirmationPopup($event)"
   ></app-course-item>
+</div>
   
   <!-- The Modal -->
   <div id="deleteConfirmationModal" class="modal">
@@ -29,5 +30,5 @@
       <button class="no-button" (click)="closeDeleteConfirmationPopup($event)">No</button>
     </div>
   </div>
-</div>
+
 <app-load-more *ngIf="!isCoursesEmpty()"></app-load-more>
