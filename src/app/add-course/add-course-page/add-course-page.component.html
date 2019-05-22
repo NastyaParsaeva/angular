@@ -2,11 +2,11 @@
   <h2 class="new-course-form-title" *ngIf="!courseItem">New Course</h2>
   <div class="add-course-form">
     <p class="course-title input-caption">Title</p>
-    <input class="course-title input-field" type="text" name="title" value="{{courseItem ? courseItem.title : 'Title'}}">
+    <input class="course-title input-field" type="text" name="title" value="{{courseItem ? courseItem.name : 'Title'}}">
     <app-course-description [description]="courseItem ? courseItem.description : null"></app-course-description>
     <p class="course-date input-caption">Date</p>
-    <input class="course-date input-field" type="text" name="date" value="{{courseItem ? courseItem.creationDate : ''}}">
-    <app-course-duration [duration]="courseItem ? courseItem.duration : null"></app-course-duration>
+    <input class="course-date input-field" type="text" name="date" value="{{courseItem ? courseItem.date : ''}}">
+    <app-course-duration [duration]="courseItem ? courseItem.length : null"></app-course-duration>
     <app-course-authors [authors]="courseItem ? courseItem.authors : null"></app-course-authors>
     <button class="save-course button" (click)="saveCourse($event)">Save</button>
     <button class="cancel button" (click)="cancel($event)">Cancel</button>

@@ -17,5 +17,5 @@ export class LoadMoreComponent implements OnInit {
     this.showMoreCourses.emit(this);
   }
 
-  @Output() showMoreCourses: EventEmitter = new EventEmitter();
+  @Output() showMoreCourses: EventEmitter<any> = new EventEmitter<any>();
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CourseItemComponent } from './course-item/course-item.component';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { CourseItem } from './course-item.model';
 import { Observable } from 'rxjs';
 
@@ -155,14 +155,16 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   getCourses(pageNumber: number = null, itemsPerPage: number = null): Observable<CourseItem[]> {
+    return this.http.get<CourseItem[]>(BASE_URL);
     // console.log(`${BASE_URL}?start=${pageNumber*itemsPerPage+1}&count=${itemsPerPage}`);
 
-    if (pageNumber !== null && itemsPerPage !== null) {
-      console.log(`${BASE_URL}?start=${(pageNumber - 1)*itemsPerPage}&count=${itemsPerPage}`);
-      return this.http.get<CourseItem[]>(`${BASE_URL}?start=${pageNumber*itemsPerPage+1}&count=${itemsPerPage}`);
-    }
-    console.log(BASE_URL);
-    return this.http.get<CourseItem[]>(BASE_URL);
+    // if (pageNumber !== null && itemsPerPage !== null) {
+    //   const params = new HttpParams().set('start', pageNumber)
+    //   console.log(`${BASE_URL}?start=${(pageNumber - 1)*itemsPerPage}&count=${itemsPerPage}`);
+    //   return this.http.get<CourseItem[]>(`${BASE_URL}?start=${pageNumber*itemsPerPage+1}&count=${itemsPerPage}`);
+    // }
+    // console.log(BASE_URL);
+    // return this.http.get<CourseItem[]>(BASE_URL);
     
   }
 
@@ -175,9 +177,12 @@ export class CoursesService {
   }
 
   getItemById(id) {
-    return this.courses.find( element => {
-      return element.id == id;
-    })
+    console.log(id);
+    // const params = new HttpParams().set('')
+    return this.http.get<CourseItem>(`${ BASE_URL }/${id}`);
+    // return this.courses.find( element => {
+    //   return element.id == id;
+    // })
     
   }
 

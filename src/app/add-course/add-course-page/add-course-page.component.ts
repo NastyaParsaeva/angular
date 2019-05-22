@@ -18,7 +18,10 @@ export class AddCoursePageComponent implements OnInit {
     this.route.params.subscribe( (data) => {
       this.routeParams.id = data['id']
     })
-    this.courseItem = this.coursesService.getItemById(this.routeParams.id);
+    this.coursesService.getItemById(this.routeParams.id).subscribe(response => {
+      console.log(response);
+      this.courseItem = response;
+    });
   }
 
   saveCourse() {
