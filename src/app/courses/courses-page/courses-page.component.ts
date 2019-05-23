@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CoursesPageComponent implements OnInit {
   
-  public courseItems: CourseItem[];
+  public courseItems: CourseItem[] = [];
   public courseIdToDelete: number;
   public currentPage: number = 1;
   public ItemsPerPage: number = 10;
@@ -52,9 +52,11 @@ export class CoursesPageComponent implements OnInit {
     this.courseIdToDelete = null;
   }
 
-  deleteCourseItem() {
-    this.coursesService.removeItem(this.courseIdToDelete);
+  async deleteCourseItem() {
+    await this.coursesService.removeItem(this.courseIdToDelete);
     this.closeDeleteConfirmationPopup();
+    this.getCourses();
+    
   }
 
   editCourseItem(courseItem: CourseItem) {
@@ -68,7 +70,5 @@ export class CoursesPageComponent implements OnInit {
     });
   }
 
-  // ngOnDestroy(): void {
-  //   throw new Error("Method not implemented.");
-  // }
+
 }

@@ -178,24 +178,29 @@ export class CoursesService {
 
   getItemById(id) {
     console.log(id);
-    // const params = new HttpParams().set('')
     return this.http.get<CourseItem>(`${ BASE_URL }/${id}`);
-    // return this.courses.find( element => {
-    //   return element.id == id;
-    // })
-    
   }
 
   updateItem() {
     
   }
 
-  removeItem(courseId) {
-    let courseIndex = this.courses.findIndex(element => {
-      if (element.id === courseId) {
-        return true;
-      }
-    })
-    this.courses.splice(courseIndex, 1);
+  removeItem(courseId: number): any {
+    let temp = null;
+    console.log('remove service' + courseId);
+    this.http.delete<CourseItem>(`${BASE_URL}/${courseId}`).toPromise()
+    //  .subscribe(response => {
+    //   temp = console.log(response);
+    //   return temp;
+    // });
+    
+    // this.http.delete(`${BASE_URL}/${courseId}`);
+
+    // let courseIndex = this.courses.findIndex(element => {
+    //   if (element.id === courseId) {
+    //     return true;
+    //   }
+    // })
+    // this.courses.splice(courseIndex, 1);
   }
 }
