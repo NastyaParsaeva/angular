@@ -52,11 +52,11 @@ export class CoursesPageComponent implements OnInit {
     this.courseIdToDelete = null;
   }
 
-  async deleteCourseItem() {
-    await this.coursesService.removeItem(this.courseIdToDelete);
-    this.closeDeleteConfirmationPopup();
-    this.getCourses();
-    
+  deleteCourseItem() {
+    this.coursesService.removeItem(this.courseIdToDelete).subscribe(response => {
+      this.closeDeleteConfirmationPopup();
+      this.getCourses();
+    });    
   }
 
   editCourseItem(courseItem: CourseItem) {
@@ -69,6 +69,4 @@ export class CoursesPageComponent implements OnInit {
       console.log(response);
     });
   }
-
-
 }

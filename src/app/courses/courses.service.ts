@@ -188,19 +188,6 @@ export class CoursesService {
   removeItem(courseId: number): any {
     let temp = null;
     console.log('remove service' + courseId);
-    this.http.delete<CourseItem>(`${BASE_URL}/${courseId}`).toPromise()
-    //  .subscribe(response => {
-    //   temp = console.log(response);
-    //   return temp;
-    // });
-    
-    // this.http.delete(`${BASE_URL}/${courseId}`);
-
-    // let courseIndex = this.courses.findIndex(element => {
-    //   if (element.id === courseId) {
-    //     return true;
-    //   }
-    // })
-    // this.courses.splice(courseIndex, 1);
+    return this.http.delete<CourseItem>(`${BASE_URL}/${courseId}`);
   }
 }
