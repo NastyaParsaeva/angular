@@ -26,7 +26,6 @@ export class CoursesPageComponent implements OnInit {
   }
 
   getCourses() {
-    
     this.coursesService.getCourses(this.currentPage, this.ItemsPerPage).subscribe(response => {
       console.log(response);
       this.courseItems = response;

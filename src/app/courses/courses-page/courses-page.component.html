@@ -11,9 +11,9 @@
   <app-course-item
   *ngFor="let item of courseItems | orderBy: !creationDate"
   [id]="item.id"
-  [title]="item.name"
-  [creationDate]="item.date"
-  [duration]="item.length"
+  [title]="item.title"
+  [creationDate]="item.creationDate"
+  [duration]="item.duration"
   [description]="item.description"
   [isTopRated]="item.isTopRated"
   (editCourseItem)="editCourseItem($event)"

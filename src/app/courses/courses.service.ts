@@ -3,6 +3,7 @@ import { CourseItemComponent } from './course-item/course-item.component';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CourseItem } from './course-item.model';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const BASE_URL = 'http://localhost:3004/courses';
 
@@ -155,17 +156,19 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   getCourses(pageNumber: number = null, itemsPerPage: number = null): Observable<CourseItem[]> {
-    return this.http.get<CourseItem[]>(BASE_URL);
-    // console.log(`${BASE_URL}?start=${pageNumber*itemsPerPage+1}&count=${itemsPerPage}`);
-
-    // if (pageNumber !== null && itemsPerPage !== null) {
-    //   const params = new HttpParams().set('start', pageNumber)
-    //   console.log(`${BASE_URL}?start=${(pageNumber - 1)*itemsPerPage}&count=${itemsPerPage}`);
-    //   return this.http.get<CourseItem[]>(`${BASE_URL}?start=${pageNumber*itemsPerPage+1}&count=${itemsPerPage}`);
-    // }
-    // console.log(BASE_URL);
-    // return this.http.get<CourseItem[]>(BASE_URL);
-    
+    return this.http.get<any>(BASE_URL).pipe(map(data => {
+      let coursesList = data;
+      return coursesList.map(item => {
+        return {
+          id: item.id,
+          title: item.name,
+          creationDate: item.date, 
+          duration: item.length,
+          description: item.description,
+          isTopRated: item.isTopRated
+        };
+      });
+    }));
   }
 
   getFilteredItems(textFragment: string): Observable<CourseItem[]> {
@@ -177,8 +180,17 @@ export class CoursesService {
   }
 
   getItemById(id) {
-    console.log(id);
-    return this.http.get<CourseItem>(`${ BASE_URL }/${id}`);
+    return this.http.get<any>(`${ BASE_URL }/${id}`).pipe(map(item => {
+      return {
+        id: item.id,
+        title: item.name,
+        creationDate: item.date, 
+        duration: item.length,
+        description: item.description,
+        isTopRated: item.isTopRated,
+        authors: item.authors
+      }
+    }));
   }
 
   updateItem() {
