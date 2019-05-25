@@ -16,7 +16,6 @@ export class CourseDurationComponent implements OnInit {
   }
 
   onDurationChange(length: number) {
-    console.log(length);
     this.duration = length;
     this.durationChange.emit(length);
   }

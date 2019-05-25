@@ -16,7 +16,6 @@ export class CourseDescriptionComponent implements OnInit {
   }
 
   onDescriptionChange(desc: string) {
-    console.log(desc);
     this.description = desc;
     this.descriptionChange.emit(desc);
   }

@@ -13,6 +13,7 @@ import { OrderByPipe } from './order-by.pipe';
 import { FilterByNamePipe } from './filter-by-name.pipe';
 import { RouterModule } from '@angular/router';
 import { ConvertCourseItemToServiceCoursePipe } from './convert-course-item-to-service-course.pipe';
+import { ConvertServiceCourseToCourseItemPipe } from './convert-service-course-to-course-item.pipe';
 
 @NgModule({
   declarations: [
@@ -26,14 +27,14 @@ import { ConvertCourseItemToServiceCoursePipe } from './convert-course-item-to-s
     StringifyDurationPipe, 
     OrderByPipe, 
     FilterByNamePipe, 
-    ConvertCourseItemToServiceCoursePipe
+    ConvertCourseItemToServiceCoursePipe, ConvertServiceCourseToCourseItemPipe
   ],
   imports: [
     FormsModule,
     CommonModule,
     RouterModule
   ],
-  providers: [ConvertCourseItemToServiceCoursePipe],
+  providers: [ConvertCourseItemToServiceCoursePipe, ConvertServiceCourseToCourseItemPipe],
   exports: [
     CoursesPageComponent
   ]

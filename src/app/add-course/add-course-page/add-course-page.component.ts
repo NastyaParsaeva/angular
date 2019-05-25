@@ -26,11 +26,13 @@ export class AddCoursePageComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe( (data) => {
       this.routeParams.id = data['id']
+      if (this.routeParams.id) {
+        this.coursesService.getItemById(this.routeParams.id).subscribe(response => {
+          console.log(response);
+          this.courseItem = response;
+        });
+      }
     })
-    this.coursesService.getItemById(this.routeParams.id).subscribe(response => {
-      console.log(response);
-      this.courseItem = response;
-    });
   }
 
   saveCourse() {

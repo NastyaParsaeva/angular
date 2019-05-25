@@ -16,7 +16,6 @@ export class SearchControlComponent implements OnInit {
 
   filterItems() {
     this.filterCourseItems.emit(this.courseName);
-    // console.log(this.courseName);
   }
 
   @Output() filterCourseItems: EventEmitter<string> = new EventEmitter<string>();

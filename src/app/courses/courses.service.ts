@@ -5,6 +5,7 @@ import { CourseItem } from './course-item.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ConvertCourseItemToServiceCoursePipe } from './convert-course-item-to-service-course.pipe';
+import { ConvertServiceCourseToCourseItemPipe } from './convert-service-course-to-course-item.pipe';
 
 const BASE_URL = 'http://localhost:3004/courses';
 
@@ -14,40 +15,29 @@ const BASE_URL = 'http://localhost:3004/courses';
 export class CoursesService {
 
   constructor(private http: HttpClient, 
-    private courseItemToServiceCourseConverter: ConvertCourseItemToServiceCoursePipe) { }
+    private courseItemToServiceCourseConverter: ConvertCourseItemToServiceCoursePipe,
+    private serviceCourseToCourseItemConverter: ConvertServiceCourseToCourseItemPipe) { }
 
   getCourses(pageNumber: number = null, itemsPerPage: number = null): Observable<CourseItem[]> {
     return this.http.get<any>(BASE_URL).pipe(map(data => {
-      let coursesList = data;
-      return coursesList.map(item => {
-        return {
-          id: item.id,
-          title: item.name,
-          creationDate: item.date, 
-          duration: item.length,
-          description: item.description,
-          isTopRated: item.isTopRated
-        };
+      return data.map(item => {
+        return this.serviceCourseToCourseItemConverter.transform(item);
       });
     }));
   }
 
   getItemById(id) {
     return this.http.get<any>(`${ BASE_URL }/${id}`).pipe(map(item => {
-      return {
-        id: item.id,
-        title: item.name,
-        creationDate: item.date, 
-        duration: item.length,
-        description: item.description,
-        isTopRated: item.isTopRated,
-        authors: item.authors
-      }
+      return this.serviceCourseToCourseItemConverter.transform(item);
     }));
   }
 
   getFilteredItems(textFragment: string): Observable<CourseItem[]> {
-    return this.http.get<CourseItem[]>(BASE_URL, {params: {textFragment}});
+    return this.http.get<CourseItem[]>(BASE_URL, {params: {textFragment}}).pipe(map(data => {
+      return data.map(item => {
+        return this.serviceCourseToCourseItemConverter.transform(item);
+      });
+    }));
   }
 
   createCourse(item) {
