@@ -32,16 +32,6 @@ export class CoursesService {
     }));
   }
 
-  getFilteredItems(textFragment: string): Observable<CourseItem[]> {
-    return this.http.get<CourseItem[]>(BASE_URL, {params: {textFragment}});
-  }
-
-  createCourse(item) {
-    const newCourseItem = this.courseItemToServiceCourseConverter.transform(item);
-    console.log(newCourseItem);
-    return this.http.post(BASE_URL, newCourseItem);
-  }
-
   getItemById(id) {
     return this.http.get<any>(`${ BASE_URL }/${id}`).pipe(map(item => {
       return {
@@ -56,8 +46,20 @@ export class CoursesService {
     }));
   }
 
-  updateItem() {
-    
+  getFilteredItems(textFragment: string): Observable<CourseItem[]> {
+    return this.http.get<CourseItem[]>(BASE_URL, {params: {textFragment}});
+  }
+
+  createCourse(item) {
+    const newCourseItem = this.courseItemToServiceCourseConverter.transform(item);
+    console.log(newCourseItem);
+    return this.http.post(BASE_URL, newCourseItem);
+  }
+
+  updateCourse(item) {
+    const newCourseItem = this.courseItemToServiceCourseConverter.transform(item);
+    console.log(newCourseItem);
+    return this.http.put(`${ BASE_URL }/${item.id}`, newCourseItem);
   }
 
   removeItem(courseId: number): any {

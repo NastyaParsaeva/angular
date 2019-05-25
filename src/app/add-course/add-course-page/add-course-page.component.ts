@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { CourseItem } from 'src/app/courses/course-item.model';
 import { CoursesService } from 'src/app/courses/courses.service';
 
@@ -34,14 +34,18 @@ export class AddCoursePageComponent implements OnInit {
   }
 
   saveCourse() {
-    console.log(this.courseItem);
-    this.coursesService.createCourse(this.courseItem).subscribe(response => {
-      console.log(response);
-      this.router.navigateByUrl('courses');
-    });
-    // this.coursesService.updateItem();
+    if (this.courseItem.id !== null) {
+      this.coursesService.updateCourse(this.courseItem).subscribe(response => {
+        console.log(response);
+        this.router.navigateByUrl('courses');
+      });
+    } else {
+      this.coursesService.createCourse(this.courseItem).subscribe(response => {
+        console.log(response);
+        this.router.navigateByUrl('courses');
+      });
+    }
     
-
   }
 
   cancel() {
