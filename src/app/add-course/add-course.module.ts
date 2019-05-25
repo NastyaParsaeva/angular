@@ -4,11 +4,13 @@ import { AddCoursePageComponent } from './add-course-page/add-course-page.compon
 import { CourseDescriptionComponent } from './course-description/course-description.component';
 import { CourseAuthorsComponent } from './course-authors/course-authors.component';
 import { CourseDurationComponent } from './course-duration/course-duration.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AddCoursePageComponent, CourseDescriptionComponent, CourseAuthorsComponent, CourseDurationComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class AddCourseModule { }

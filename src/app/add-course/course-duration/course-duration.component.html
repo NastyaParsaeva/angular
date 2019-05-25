@@ -1,2 +1,2 @@
 <p class="course-duration input-caption">Duration</p>
-<input class="course-duration input-field" type="text" name="duration" value="{{ duration ? duration : ''}}">
+<input class="course-duration input-field" type="text" name="duration" [ngModel]="duration" (ngModelChange)="onDurationChange($event)">

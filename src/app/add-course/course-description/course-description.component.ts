@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-course-description',
@@ -8,10 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CourseDescriptionComponent implements OnInit {
 
   @Input() description: string;
+  @Output() descriptionChange: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDescriptionChange(desc: string) {
+    console.log(desc);
+    this.description = desc;
+    this.descriptionChange.emit(desc);
   }
 
 }

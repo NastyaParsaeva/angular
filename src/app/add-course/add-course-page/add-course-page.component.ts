@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseItem } from 'src/app/courses/course-item.model';
 import { CoursesService } from 'src/app/courses/courses.service';
@@ -9,7 +9,16 @@ import { CoursesService } from 'src/app/courses/courses.service';
   styleUrls: ['./add-course-page.component.css']
 })
 export class AddCoursePageComponent implements OnInit {
-  public courseItem: CourseItem
+  
+  @Input() courseItem: CourseItem = {
+    id: null,
+    title: '',
+    creationDate: new Date(),
+    duration: null,
+    description: '',
+    isTopRated: false,
+  };
+
   public routeParams: any = {}
 
   constructor(private router: Router, private route: ActivatedRoute, private coursesService: CoursesService) { }
@@ -25,9 +34,13 @@ export class AddCoursePageComponent implements OnInit {
   }
 
   saveCourse() {
-    console.log('course saved');
-    this.coursesService.updateItem();
-    this.router.navigateByUrl('courses');
+    console.log(this.courseItem);
+    this.coursesService.createCourse(this.courseItem).subscribe(response => {
+      console.log(response);
+      this.router.navigateByUrl('courses');
+    });
+    // this.coursesService.updateItem();
+    
 
   }
 

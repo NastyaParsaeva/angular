@@ -1,3 +1,2 @@
 <p class="course-description input-caption" >Description</p>
-<!-- <input class="course-description input-field" type="textarea" name="description"> -->
-<textarea class="course-description input-field" rows="10" cols="45" name="decription" value="{{description ? description : ''}}"></textarea>
+<textarea class="course-description input-field" rows="10" cols="45" name="course-decription" placeholder="Insert course description" [ngModel]="description" (ngModelChange)="onDescriptionChange($event)"></textarea>

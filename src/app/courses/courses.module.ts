@@ -12,6 +12,7 @@ import { StringifyDurationPipe } from './stringify-duration.pipe';
 import { OrderByPipe } from './order-by.pipe';
 import { FilterByNamePipe } from './filter-by-name.pipe';
 import { RouterModule } from '@angular/router';
+import { ConvertCourseItemToServiceCoursePipe } from './convert-course-item-to-service-course.pipe';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,15 @@ import { RouterModule } from '@angular/router';
     HighlightTopRatedDirective, 
     StringifyDurationPipe, 
     OrderByPipe, 
-    FilterByNamePipe
+    FilterByNamePipe, 
+    ConvertCourseItemToServiceCoursePipe
   ],
   imports: [
     FormsModule,
     CommonModule,
     RouterModule
   ],
+  providers: [ConvertCourseItemToServiceCoursePipe],
   exports: [
     CoursesPageComponent
   ]
