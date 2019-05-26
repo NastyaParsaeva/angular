@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck, AfterViewChecked } from '@angular/core';
 import { User } from '../user.model';
 import { AuthService } from '../../shared/auth.service';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -14,13 +15,14 @@ export class UserComponent implements OnInit, User {
   lastName: string;
 
   constructor(private authService: AuthService, private router: Router) { 
-    // this.authService = authService.getList();
   }
 
   ngOnInit() {
-    this.id=1548;
-    this.firstName = 'Anastasiia';
-    this.lastName = 'Parsaeva';
+    this.router.events.subscribe((event) => {
+      if(event instanceof NavigationStart) {
+        this.getUserInfo();
+      }
+    });
   }
 
   logout() {
@@ -30,6 +32,17 @@ export class UserComponent implements OnInit, User {
 
   isAuthentificated(): boolean {
     return this.authService.isAuthentificated();
+  }
+
+  getUserInfo() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      this.authService.getUserInfo(token).subscribe(response => {
+        this.firstName = response.name.first;
+        this.lastName = response.name.last;
+      });
+    }
   }
 
 }

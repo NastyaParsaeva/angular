@@ -3,10 +3,9 @@
   <!-- <form class="login-form" (submit)="loginUser($event)"> -->
     <div class="login-form">
       <p class="login input-capture">Login</p>
-      <input class="login input-field" type="text" name="login" placeholder="Enter your login">
+      <input class="login input-field" type="text" name="login" placeholder="Enter your login" [(ngModel)]="userLogin">
       <p class="password input-capture">Password</p>
-      <input class="password input-field" type="text" name="password" placeholder="Enter your password">
-      <!-- <input class="sign-in-button" type="submit" value="Sign in"> -->
+      <input class="password input-field" type="text" name="password" placeholder="Enter your password" [(ngModel)]="userPassword">
       <button class="sign-in-button" (click)="loginUser($event)">Sign in</button>
     </div>  
   <!-- </form> -->

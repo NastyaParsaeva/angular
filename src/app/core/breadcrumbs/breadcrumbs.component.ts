@@ -3,7 +3,6 @@ import { Router, NavigationEnd, ActivatedRoute, PRIMARY_OUTLET, ActivatedRouteSn
 import { MyBreadcrumb } from '../breadcrumb.model';
 import { filter } from 'rxjs/operators';
 import { CoursesService } from 'src/app/courses/courses.service';
-import { callLifecycleHooksChildrenFirst } from '@angular/core/src/view/provider';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -17,7 +16,6 @@ export class BreadcrumbsComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private coursesService: CoursesService) { }
 
   ngOnInit() {
-    const ROUTE_DATA_BREADCRUMB: string = "breadcrumb";
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -27,7 +25,6 @@ export class BreadcrumbsComponent implements OnInit {
   }
 
   private getBreadcrumbs(route: ActivatedRoute, url: string="", breadcrumbs: MyBreadcrumb[]=[]): MyBreadcrumb[] {
-    const ROUTE_DATA_BREADCRUMB: string = "breadcrumb";
     let children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) {
@@ -39,14 +36,9 @@ export class BreadcrumbsComponent implements OnInit {
         continue;
       }
 
-      if (!child.snapshot.data.hasOwnProperty(ROUTE_DATA_BREADCRUMB)) {
-        return this.getBreadcrumbs(child, url, breadcrumbs);
-      }
-
       let routeURL: string = child.snapshot.url.map(segment => segment.path).join("/");
       if (routeURL !== '')  {
         url += `/${routeURL}`;
-        // child.snapshot
         breadcrumbs.push(this.createBreadcrumbItem(child.snapshot, url));  
       }
       return this.getBreadcrumbs(child, url, breadcrumbs);
@@ -56,7 +48,10 @@ export class BreadcrumbsComponent implements OnInit {
   createBreadcrumbItem(route: ActivatedRouteSnapshot, url: string) {
     let label;
     if (route.data['breadcrumb'] === 'compId') {
-      label = this.coursesService.getItemById(route.params.id).title;
+      this.coursesService.getItemById(route.params.id).subscribe(resp => {
+        console.log(resp);
+        label = resp.title;
+      })
     } else {
       label = route.data['breadcrumb'];
     }

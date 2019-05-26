@@ -1,38 +1,43 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { Observable, Subscription } from 'rxjs';
+
+const BASE_URL = 'http://localhost:3004/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public userId = 1548;
-  public firstName = 'Anastasiia';
-  public lastName = 'Parsaeva';
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
-
-  login() { 
-    console.log('logged in succesfully');
-    localStorage.setItem('userId', ''+this.userId);
-    localStorage.setItem('firstName', this.firstName);
-    localStorage.setItem('lastName', this.lastName);
+  login (userLogin, userPassword) { 
+    const body = {
+      'login': userLogin,
+      'password': userPassword,
+    }
+    return this.http.post(`${BASE_URL}/login`, body).pipe(map(resp => {
+      return resp.token;
+    }));
   }
 
   logout() { 
-    localStorage.removeItem('userId');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('lastName');
-    console.log('logout');
+    localStorage.removeItem('token');
   }
 
-  isAuthentificated(): boolean { 
-    if (localStorage.getItem('userId')) {
+  isAuthentificated() { 
+    const token = localStorage.getItem('token')
+    if (token) {
       return true;
+    } else {
+      return false; 
     }
-    return false;
   }
 
-  getUserInfo(): string { 
-    return `${localStorage.getItem('firstName')} ${localStorage.getItem('lastName')}`;
+  getUserInfo(token: string) { 
+    const authHeader = new HttpHeaders().set('Authorization', token);
+    return this.http.post(`${BASE_URL}/userinfo`, null, {headers: authHeader});
   }
 }

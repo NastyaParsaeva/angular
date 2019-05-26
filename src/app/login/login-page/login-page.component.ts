@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
+  public userLogin: string;
+  public userPassword: string;
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -16,8 +19,11 @@ export class LoginPageComponent implements OnInit {
 
   loginUser(event) {
     event.preventDefault();
-    this.authService.login();
-    this.router.navigateByUrl('');
+    this.authService.login(this.userLogin, this.userPassword).subscribe(response => {
+      localStorage.setItem('token', response);
+      this.router.navigateByUrl('');
+    });
+    
   }
 
 }

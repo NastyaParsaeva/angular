@@ -8,7 +8,7 @@
     <input class="course-date input-field" type="text" name="date" 
       [ngModel]="courseItem.creationDate | date : 'shortDate'" (ngModelChange)="courseItem.creationDate=$event" />
     <app-course-duration [(duration)]="courseItem.duration"></app-course-duration>
-    <app-course-authors [authors]="courseItem ? courseItem.authors : null"></app-course-authors>
+    <app-course-authors [authors]="courseItem.authors"></app-course-authors>
     <button class="save-course button" (click)="saveCourse($event)">Save</button>
     <button class="cancel button" (click)="cancel($event)">Cancel</button>
   </div>
