@@ -1,7 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth-interceptor';
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,10 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ AuthService ],
+      providers: [ 
+        AuthService,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+       ],
     };
   }
 }

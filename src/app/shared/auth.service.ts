@@ -18,12 +18,12 @@ export class AuthService {
       'login': userLogin,
       'password': userPassword,
     }
-    return this.http.post(`${BASE_URL}/login`, body).pipe(map(resp => {
+    return this.http.post<any>(`${BASE_URL}/login`, body).pipe(map(resp => {
       return resp.token;
     }));
   }
 
-  logout() { 
+  logout(): void { 
     localStorage.removeItem('token');
   }
 
@@ -36,8 +36,8 @@ export class AuthService {
     }
   }
 
-  getUserInfo(token: string) { 
-    const authHeader = new HttpHeaders().set('Authorization', token);
-    return this.http.post(`${BASE_URL}/userinfo`, null, {headers: authHeader});
+  getUserInfo(token: string): Observable<any> { 
+    // const authHeader = new HttpHeaders().set('Authorization', token);
+    return this.http.post(`${BASE_URL}/userinfo`, null);
   }
 }
