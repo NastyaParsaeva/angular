@@ -11,61 +11,64 @@ import { Router } from '@angular/router';
 })
 export class CoursesPageComponent implements OnInit {
   
-  public courseItems: CourseItem[] = [];
-  public courseIdToDelete: number;
-  public currentPage: number = 1;
-  public ItemsPerPage: number = 10;
-  
-  public modal;
-
-  constructor(private coursesService: CoursesService, private router: Router) { }
-
   ngOnInit() {
-    this.getCourses();
-    this.modal = document.getElementById('deleteConfirmationModal');
+    
   }
+  // public courseItems: CourseItem[] = [];
+  // public courseIdToDelete: number;
+  // public currentPage: number = 1;
+  // public ItemsPerPage: number = 10;
+  
+  // public modal;
 
-  getCourses() {
-    this.coursesService.getCourses(this.currentPage, this.ItemsPerPage).subscribe(response => {
-      console.log(response);
-      this.courseItems = response;
-    });
-  }
+  // constructor(private coursesService: CoursesService, private router: Router) { }
 
-  showMoreCourses() {
-    this.currentPage++;
-    this.getCourses();
-  }
+  // ngOnInit() {
+  //   this.getCourses();
+  //   this.modal = document.getElementById('deleteConfirmationModal');
+  // }
 
-  isCoursesEmpty() {
-    return !(this.courseItems.length > 0);
-  }
+  // getCourses() {
+  //   this.coursesService.getCourses(this.currentPage, this.ItemsPerPage).subscribe(response => {
+  //     console.log(response);
+  //     this.courseItems = response;
+  //   });
+  // }
 
-  showDeleteConfirmationPopup(courseItem: CourseItem): void {
-    this.modal.style.display = "block";
-    this.courseIdToDelete = courseItem.id;
-  }
+  // showMoreCourses() {
+  //   this.currentPage++;
+  //   this.getCourses();
+  // }
 
-  closeDeleteConfirmationPopup(): void {
-    this.modal.style.display = "none";
-    this.courseIdToDelete = null;
-  }
+  // isCoursesEmpty() {
+  //   return !(this.courseItems.length > 0);
+  // }
 
-  deleteCourseItem() {
-    this.coursesService.removeItem(this.courseIdToDelete).subscribe(response => {
-      this.closeDeleteConfirmationPopup();
-      this.getCourses();
-    });    
-  }
+  // showDeleteConfirmationPopup(courseItem: CourseItem): void {
+  //   this.modal.style.display = "block";
+  //   this.courseIdToDelete = courseItem.id;
+  // }
 
-  editCourseItem(courseItem: CourseItem) {
-    this.router.navigate( ['courses/', courseItem.id]);
-  }
+  // closeDeleteConfirmationPopup(): void {
+  //   this.modal.style.display = "none";
+  //   this.courseIdToDelete = null;
+  // }
 
-  filterCourseItems(queryString: string) {
-    this.coursesService.getFilteredItems(queryString).subscribe(response => {
-      this.courseItems = response;
-      console.log(response);
-    });
-  }
+  // deleteCourseItem() {
+  //   this.coursesService.removeItem(this.courseIdToDelete).subscribe(response => {
+  //     this.closeDeleteConfirmationPopup();
+  //     this.getCourses();
+  //   });    
+  // }
+
+  // editCourseItem(courseItem: CourseItem) {
+  //   this.router.navigate( ['courses/', courseItem.id]);
+  // }
+
+  // filterCourseItems(queryString: string) {
+  //   this.coursesService.getFilteredItems(queryString).subscribe(response => {
+  //     this.courseItems = response;
+  //     console.log(response);
+  //   });
+  // }
 }

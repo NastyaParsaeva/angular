@@ -18,7 +18,11 @@ export class CoursesService {
     private courseItemToServiceCourseConverter: ConvertCourseItemToServiceCoursePipe,
     private serviceCourseToCourseItemConverter: ConvertServiceCourseToCourseItemPipe) { }
 
-  getCourses(pageNumber: number = null, itemsPerPage: number = null): Observable<CourseItem[]> {
+
+  getCoursesForPage(firstCourseNumber: number, lastCourseNumber: number): Observable<CourseItem[]> {
+    return null;
+  }
+  getAllCourses(): Observable<CourseItem[]> {
     return this.http.get<any>(BASE_URL).pipe(map(data => {
       return data.map(item => {
         return this.serviceCourseToCourseItemConverter.transform(item);

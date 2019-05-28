@@ -1,12 +1,11 @@
-<div>
-    <!-- <router-outlet></router-outlet> -->
-</div>
-
 <div class="search-and-add-course">
   <app-search-control (filterCourseItems)="filterCourseItems($event)"></app-search-control>
   <app-new-course></app-new-course>
 </div>
-<div>
+<div class="pagination">
+  <app-courses-list></app-courses-list>
+</div>
+<!-- <div>
   <p *ngIf="isCoursesEmpty()">No courses found</p>
   <app-course-item
   *ngFor="let item of courseItems | orderBy: !creationDate"
@@ -19,7 +18,7 @@
   (editCourseItem)="editCourseItem($event)"
   (deleteCourseItem)="showDeleteConfirmationPopup($event)"
   ></app-course-item>
-</div>
+</div> -->
   
   <!-- The Modal -->
   <div id="deleteConfirmationModal" class="modal">
@@ -31,4 +30,4 @@
     </div>
   </div>
 
-<app-load-more *ngIf="!isCoursesEmpty()" (showMoreCourses)="showMoreCourses($event)"></app-load-more>
+<!-- <app-load-more *ngIf="!isCoursesEmpty()" (showMoreCourses)="showMoreCourses($event)"></app-load-more> -->

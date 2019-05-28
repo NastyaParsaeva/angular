@@ -14,6 +14,7 @@ import { FilterByNamePipe } from './filter-by-name.pipe';
 import { RouterModule } from '@angular/router';
 import { ConvertCourseItemToServiceCoursePipe } from './convert-course-item-to-service-course.pipe';
 import { ConvertServiceCourseToCourseItemPipe } from './convert-service-course-to-course-item.pipe';
+import { CoursesListComponent } from './courses-list/courses-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ConvertServiceCourseToCourseItemPipe } from './convert-service-course-t
     StringifyDurationPipe, 
     OrderByPipe, 
     FilterByNamePipe, 
-    ConvertCourseItemToServiceCoursePipe, ConvertServiceCourseToCourseItemPipe
+    ConvertCourseItemToServiceCoursePipe, ConvertServiceCourseToCourseItemPipe, CoursesListComponent
   ],
   imports: [
     FormsModule,

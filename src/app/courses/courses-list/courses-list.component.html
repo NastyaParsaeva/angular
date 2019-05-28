@@ -1,0 +1,32 @@
+<div>
+  <p *ngIf="isCoursesEmpty()">No courses found</p>
+  <app-course-item
+    *ngFor="let item of pagedItems | orderBy: !creationDate"
+    [id]="item.id"
+    [title]="item.title"
+    [creationDate]="item.creationDate"
+    [duration]="item.duration"
+    [description]="item.description"
+    [isTopRated]="item.isTopRated"
+    (editCourseItem)="editCourseItem($event)"
+    (deleteCourseItem)="showDeleteConfirmationPopup($event)"
+  ></app-course-item>
+</div>
+
+<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+    <a (click)="setPage(page)">{{page}}</a>
+  </li>
+</ul>
+
+<!-- The Modal -->
+<div id="deleteConfirmationModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeDeleteConfirmationPopup($event)">&times;</span>
+    <p>Do you realy want to delete this course?</p>
+    <button class="yes-button" (click)="deleteCourseItem($event)">Yes</button>
+    <button class="no-button" (click)="closeDeleteConfirmationPopup($event)">No</button>
+  </div>
+</div>
+
+<!-- <app-load-more *ngIf="!isCoursesEmpty()" (showMoreCourses)="showMoreCourses($event)"></app-load-more> -->
