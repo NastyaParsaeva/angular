@@ -1,0 +1,5 @@
+<ul *ngIf="pagesAmount > 0" class="pagination">
+  <li *ngFor="let page of pagesArray" class="pagination-item" [ngClass]="{active:currentPage === page}">
+    <a (click)="onPageNumberClick(page)">{{page}}</a>
+  </li>
+</ul>

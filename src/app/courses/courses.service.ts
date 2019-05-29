@@ -16,12 +16,23 @@ export class CoursesService {
 
   constructor(private http: HttpClient, 
     private courseItemToServiceCourseConverter: ConvertCourseItemToServiceCoursePipe,
-    private serviceCourseToCourseItemConverter: ConvertServiceCourseToCourseItemPipe) { }
+    private serviceCourseToCourseItemConverter: ConvertServiceCourseToCourseItemPipe) 
+  { }
 
 
-  getCoursesForPage(firstCourseNumber: number, lastCourseNumber: number): Observable<CourseItem[]> {
-    return null;
+  getCoursesAmount() {
+    return this.http.get<number>(`${BASE_URL}/length`);
   }
+
+  getCoursesForPage(startNumber: number, count: number): Observable<CourseItem[]> {
+    console.log(`${BASE_URL}?start=${ startNumber }&count=${ count }`);
+    return this.http.get<any>(`${BASE_URL}?start=${ startNumber }&count=${ count }`).pipe(map(data => {
+      return data.map(item => {
+        return this.serviceCourseToCourseItemConverter.transform(item);
+      })
+    }))
+  }
+
   getAllCourses(): Observable<CourseItem[]> {
     return this.http.get<any>(BASE_URL).pipe(map(data => {
       return data.map(item => {
