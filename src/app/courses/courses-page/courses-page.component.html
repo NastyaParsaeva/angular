@@ -18,5 +18,14 @@
   ></app-course-item>
 </div>
 
+<div id="deleteConfirmationModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeDeleteConfirmationPopup($event)">&times;</span>
+    <p>Do you realy want to delete this course?</p>
+    <button class="yes-button" (click)="deleteCourseItem($event)">Yes</button>
+    <button class="no-button" (click)="closeDeleteConfirmationPopup($event)">No</button>
+  </div>
+</div>
+
 <app-pagination [coursesTotalAmount]="coursesTotalAmount" (pageNumberClick)="switchToPage($event)"></app-pagination>
 
