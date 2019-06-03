@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CourseItem } from '../course-item.model';
 import { FilterByNamePipe } from '../filter-by-name.pipe';
 import { CoursesService } from '../courses.service';
 import { Router } from '@angular/router';
+import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-courses-page',
@@ -11,26 +13,34 @@ import { Router } from '@angular/router';
 })
 export class CoursesPageComponent implements OnInit {
   
+  // @ViewChild('searchLine') search;
+
   public courseItems: CourseItem[] = [];
 
-  public coursesTotalAmount: number;
-  // public currentPage: number = 3;
-  // public itemsPerPage: number = 10;
-  // public pagesAmount: number;
-  // public pagesArray: number[] = [];
-  
+  public coursesTotalAmount: number;  
+
   public courseIdToDelete: number;
   
   public modal;
 
+  private search$: Subject<string> = new Subject();
+
   constructor(
     private coursesService: CoursesService, 
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getCoursesAmount();
     this.modal = document.getElementById('deleteConfirmationModal');
+    this.search$.subscribe(event => {
+      console.log(event);
+    })
+    // let searchq = fromEvent()
+    // let searchQuery = fromEvent(this.search, 'click')
+    //     .subscribe(res => console.log(res));
+
+    // console.log(searchQuery);
   }
 
   getCoursesAmount() {

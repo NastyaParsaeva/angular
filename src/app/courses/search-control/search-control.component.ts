@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search-control',
@@ -7,7 +8,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SearchControlComponent implements OnInit {
 
-  public courseName: string;
+  @Input() search: Subject<string>;
+  public courseName: string = '';
 
   constructor() { }
 
@@ -15,6 +17,14 @@ export class SearchControlComponent implements OnInit {
   }
 
   filterItems() {
+    this.filterCourseItems.emit(this.courseName);
+  }
+
+  onSearchQueryChange(event) {
+    console.log('onSearchQueryChange');
+    console.log(event);
+    this.courseName += event.key;
+    this.search.next(this.courseName);
     this.filterCourseItems.emit(this.courseName);
   }
 

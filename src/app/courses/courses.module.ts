@@ -34,7 +34,7 @@ import { PaginationComponent } from './pagination/pagination.component';
   imports: [
     FormsModule,
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [ConvertCourseItemToServiceCoursePipe, ConvertServiceCourseToCourseItemPipe],
   exports: [
