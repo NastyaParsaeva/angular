@@ -5,6 +5,7 @@ import { CoursesService } from '../courses.service';
 import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-courses-page',
@@ -33,14 +34,14 @@ export class CoursesPageComponent implements OnInit {
   ngOnInit() {
     this.getCoursesAmount();
     this.modal = document.getElementById('deleteConfirmationModal');
-    this.search$.subscribe(event => {
-      console.log(event);
+    this.search$.pipe(
+      debounceTime(250)
+    ).subscribe(query => {
+      if (query.length >= 3) {
+        console.log(query);
+        this.filterCourseItems(query);
+      }
     })
-    // let searchq = fromEvent()
-    // let searchQuery = fromEvent(this.search, 'click')
-    //     .subscribe(res => console.log(res));
-
-    // console.log(searchQuery);
   }
 
   getCoursesAmount() {
