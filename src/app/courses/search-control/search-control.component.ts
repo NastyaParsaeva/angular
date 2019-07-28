@@ -20,10 +20,7 @@ export class SearchControlComponent implements OnInit {
     this.filterCourseItems.emit(this.courseName);
   }
 
-  onSearchQueryChange(event) {
-    console.log('onSearchQueryChange');
-    console.log(event);
-    this.courseName += event.key;
+  onSearchQueryChange() {
     this.search.next(this.courseName);
   }
 
