@@ -1,6 +1,11 @@
 <div class="search-container">
   <form ng-controller="contr">
-    <input class="search-field" type="search" placeholder="Search" name="search" ng-model="courseName" (keyup)="onSearchQueryChange($event)" />
+    <input class="search-field" 
+           type="search"
+           placeholder="Search"
+           name="search"
+           ng-model="courseName"
+           (keyup)="onSearchQueryChange($event)" />
     <!-- <button class="search-button" type="submit" (click)="filterItems($event)">Search</button> -->
   </form>
 </div>
