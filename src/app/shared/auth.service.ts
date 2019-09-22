@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
-import { throwError } from 'rxjs/internal/observable/throwError';
-import { Observable, Subscription } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 const BASE_URL = 'http://localhost:3004/auth';
 
@@ -10,21 +9,23 @@ const BASE_URL = 'http://localhost:3004/auth';
   providedIn: 'root'
 })
 export class AuthService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  login (userLogin, userPassword) { 
+  login (userLogin: string, userPassword: string) { 
     const body = {
       'login': userLogin,
       'password': userPassword,
     }
     return this.http.post<any>(`${BASE_URL}/login`, body).pipe(map(resp => {
+      localStorage.setItem('token', resp);
+      this.isAuthentificated();
       return resp.token;
     }));
   }
 
   logout(): void { 
     localStorage.removeItem('token');
+    this.isAuthentificated();
   }
 
   isAuthentificated() { 
@@ -32,12 +33,11 @@ export class AuthService {
     if (token) {
       return true;
     } else {
-      return false; 
+      return false;
     }
   }
 
   getUserInfo(token: string): Observable<any> { 
-    // const authHeader = new HttpHeaders().set('Authorization', token);
     return this.http.post(`${BASE_URL}/userinfo`, null);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
 import { Router, NavigationStart } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,16 @@ export class HeaderComponent implements OnInit {
   public userId: number;
   public userFirstName: string;
   public userLastName: string;
+  public isAuthentificated: boolean;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { 
+    this.isAuthentificated = this.authService.isAuthentificated();
+    router.events.pipe(
+      filter(event => event instanceof NavigationStart)
+    ).subscribe((val) => {
+      this.checkIfAuthentificated();
+    });
+    }
 
   public ngOnInit() {
     this.router.events.subscribe((event) => {
@@ -34,8 +43,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  public isAuthentificated(): boolean {
-    return this.authService.isAuthentificated();
+  public checkIfAuthentificated() {
+    this.isAuthentificated = this.authService.isAuthentificated();
   }
 
   public logout() {
