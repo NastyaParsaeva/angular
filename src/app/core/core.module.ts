@@ -7,6 +7,9 @@ import { UsersModule } from '../users/users.module';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './loading/loading.component';
+import { LoadingService } from './loading.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from './loading-interceptor';
 
 @NgModule({
   declarations: [
@@ -27,5 +30,9 @@ import { LoadingComponent } from './loading/loading.component';
     FooterComponent,
     LoadingComponent
   ],
+  providers: [ 
+    LoadingService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+   ],
 })
 export class CoreModule { }
