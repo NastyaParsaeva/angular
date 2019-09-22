@@ -6,14 +6,26 @@ import { FakeLogoComponent } from './fake-logo/fake-logo.component';
 import { UsersModule } from '../users/users.module';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations: [HeaderComponent, BreadcrumbsComponent, FooterComponent, FakeLogoComponent],
+  declarations: [
+    HeaderComponent,
+    BreadcrumbsComponent,
+    FooterComponent,
+    FakeLogoComponent,
+    LoadingComponent,
+  ],
   imports: [
     CommonModule,
     UsersModule,
-    RouterModule
+    RouterModule,
   ],
-  exports: [HeaderComponent, BreadcrumbsComponent, FooterComponent],
+  exports: [
+    HeaderComponent,
+    BreadcrumbsComponent,
+    FooterComponent,
+    LoadingComponent
+  ],
 })
 export class CoreModule { }
