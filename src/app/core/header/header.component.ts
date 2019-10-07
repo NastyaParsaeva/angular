@@ -6,6 +6,7 @@ import { AppState } from '../../store/state/app.state';
 import { selectAuthentificationStatus, selectUser } from '../../store/selectors/auth.selector';
 import { getUserInfoAction, logoutAction } from '../../store/actions/auth.actions';
 import { User } from '../user.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ import { User } from '../user.model';
 export class HeaderComponent {
 
   public isAuthentificated: boolean;
-  public user: User;
+  public user$: Observable<User>;
 
   constructor (
     private router: Router,
@@ -33,12 +34,10 @@ export class HeaderComponent {
 
     this.store.dispatch(getUserInfoAction({}));
 
-    this.store.pipe(
+    this.user$ = this.store.pipe(
       select(selectUser),
       filter(resp => resp !== null)
-    ).subscribe((user: User) => {
-      this.user = user;
-    });
+    );
   }
 
   public logout() {

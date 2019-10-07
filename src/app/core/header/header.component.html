@@ -3,7 +3,7 @@
   <div class="header-content">
       <app-fake-logo></app-fake-logo>
       <app-user
-        [user]="user"
+        [user]="user$ | async"
         [isAuthentificated]="isAuthentificated"
         (onLogOutClick)="logout()"
       ></app-user> 
