@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CourseItem } from '../course-item.model';
-import { FilterByNamePipe } from '../filter-by-name.pipe';
+import { FilterByNamePipe } from '../pipes/filter-by-name.pipe';
 import { CoursesService } from '../services/courses.service';
 import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';

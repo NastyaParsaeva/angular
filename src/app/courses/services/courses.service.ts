@@ -4,8 +4,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { CourseItem } from '../course-item.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ConvertCourseItemToServiceCoursePipe } from '../convert-course-item-to-service-course.pipe';
-import { ConvertServiceCourseToCourseItemPipe } from '../convert-service-course-to-course-item.pipe';
+import { ConvertCourseItemToServiceCoursePipe } from '../pipes/convert-course-item-to-service-course.pipe';
+import { ConvertServiceCourseToCourseItemPipe } from '../pipes/convert-service-course-to-course-item.pipe';
 
 const BASE_URL = 'http://localhost:3004/courses';
 
