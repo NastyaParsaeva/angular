@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute, PRIMARY_OUTLET, ActivatedRouteSnapshot } from '@angular/router'
 import { MyBreadcrumb } from '../breadcrumb.model';
 import { filter } from 'rxjs/operators';
-import { CoursesService } from 'src/app/courses/courses.service';
+import { CoursesService } from '../../courses/services/courses.service';
 
 @Component({
   selector: 'app-breadcrumbs',
