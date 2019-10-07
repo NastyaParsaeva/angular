@@ -12,6 +12,10 @@ import { SharedModule } from './shared/shared.module';
 import { AddCourseModule } from './add-course/add-course.module';
 import { PageNotFoundModule } from './page-not-found/page-not-found.module';
 import { CoursesRootModule } from './courses-root/courses-root.module';
+import { StoreModule } from '@ngrx/store';
+import * as authReducer from './store/reducers/auth.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effect';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,9 @@ import { CoursesRootModule } from './courses-root/courses-root.module';
     RouterModule,
     CoursesRootModule,
     RouterModule.forRoot(ROUTES),
-    SharedModule.forRoot()
+    SharedModule.forRoot(),
+    StoreModule.forRoot({ auth: authReducer.reducer }),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],

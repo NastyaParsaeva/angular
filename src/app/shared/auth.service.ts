@@ -37,7 +37,7 @@ export class AuthService {
     }
   }
 
-  getUserInfo(token: string): Observable<any> { 
-    return this.http.post(`${BASE_URL}/userinfo`, null);
+  getUserInfo(token: string): Observable<any> {
+    return this.http.post(`${BASE_URL}/userinfo`, token);
   }
 }

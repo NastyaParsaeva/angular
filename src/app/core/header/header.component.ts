@@ -15,13 +15,13 @@ export class HeaderComponent implements OnInit {
   public isAuthentificated: boolean;
 
   constructor(private authService: AuthService, private router: Router) { 
-    this.isAuthentificated = this.authService.isAuthentificated();
-    router.events.pipe(
-      filter(event => event instanceof NavigationStart)
-    ).subscribe((val) => {
-      this.checkIfAuthentificated();
-    });
-    }
+    // this.isAuthentificated = this.authService.isAuthentificated();
+    // router.events.pipe(
+    //   filter(event => event instanceof NavigationStart)
+    // ).subscribe((val) => {
+    //   this.checkIfAuthentificated();
+    // });
+  }
 
   public ngOnInit() {
     this.router.events.subscribe((event) => {
