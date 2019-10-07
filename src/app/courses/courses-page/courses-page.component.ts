@@ -1,9 +1,7 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { CourseItem } from '../course-item.model';
-import { FilterByNamePipe } from '../pipes/filter-by-name.pipe';
+import { Component, OnInit } from '@angular/core';
+import { CourseItem } from '../models/course-item.model';
 import { CoursesService } from '../services/courses.service';
 import { Router } from '@angular/router';
-import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -13,8 +11,6 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./courses-page.component.css']
 })
 export class CoursesPageComponent implements OnInit {
-  
-  // @ViewChild('searchLine') search;
 
   public courseItems: CourseItem[] = [];
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CourseItemComponent } from '../course-item/course-item.component';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { CourseItem } from '../course-item.model';
+import { HttpClient } from '@angular/common/http';
+import { CourseItem } from '../models/course-item.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ConvertCourseItemToServiceCoursePipe } from '../pipes/convert-course-item-to-service-course.pipe';

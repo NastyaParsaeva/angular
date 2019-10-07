@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { CourseItem } from '../../courses/course-item.model';
+import { CourseItem } from '../../courses/models/course-item.model';
 import { CoursesService } from '../../courses/services/courses.service';
 
 @Component({
