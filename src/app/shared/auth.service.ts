@@ -17,7 +17,7 @@ export class AuthService {
       'password': userPassword,
     }
     return this.http.post<any>(`${BASE_URL}/login`, body).pipe(map(resp => {
-      localStorage.setItem('token', resp);
+      localStorage.setItem('token', resp.token);
       this.isAuthentificated();
       return resp.token;
     }));
@@ -37,7 +37,10 @@ export class AuthService {
     }
   }
 
-  getUserInfo(token: string): Observable<any> {
+  getUserInfo(token?: string): Observable<any> {
+    if (!token) {
+      token = localStorage.getItem('token');
+    }
     return this.http.post(`${BASE_URL}/userinfo`, token);
   }
 }

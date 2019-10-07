@@ -6,40 +6,45 @@ export enum AuthActionTypes {
     loginSuccess = "[Auth] Login Success",
     loginReject = "[Auth] Login Reject",
     logout = "[Auth] Logout",
+    logoutSuccess = "[Auth] Logout Success",
     getUserInfo = "[Auth] Get User Info",
     getUserInfoSuccess = "[Auth] Get User Info Success",
     getUserInfoReject = "[Auth] Get User Info Reject",
 }
 
-export const login = createAction(
+export const loginAction = createAction(
     AuthActionTypes.login,
     props<{ username: string; password: string }>()
 );
 
-export const loginSuccess = createAction(
+export const loginSuccessAction = createAction(
     AuthActionTypes.loginSuccess,
 );
 
-export const loginReject = createAction(
+export const loginRejectAction = createAction(
     AuthActionTypes.loginReject,
     props<{ errorCode: string }>()
 )
 
-export const logout = createAction(
+export const logoutAction = createAction(
     AuthActionTypes.logout
 );
 
-export const getUserInfo = createAction(
-    AuthActionTypes.getUserInfo,
-    props<{ token: string }>(),
+export const logoutSuccessAction = createAction(
+    AuthActionTypes.logoutSuccess
 )
 
-export const getUserInfoSuccess = createAction(
+export const getUserInfoAction = createAction(
+    AuthActionTypes.getUserInfo,
+    props<{ token?: string }>(),
+)
+
+export const getUserInfoSuccessAction = createAction(
     AuthActionTypes.getUserInfoSuccess,
     props<{ user: User }>(),
 )
 
-export const getUserInfoReject = createAction(
+export const getUserInfoRejectAction = createAction(
     AuthActionTypes.getUserInfoReject,
     props<{ errorCode: string }>(),
 )

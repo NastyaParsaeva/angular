@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/store/state/app.state';
-import { login } from '../../store/actions/auth.actions'
+import { loginAction } from '../../store/actions/auth.actions'
 import { selectAuthentificationStatus } from '../../store/selectors/auth.selector';
 import { filter } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ export class LoginPageComponent {
   constructor (
     private router: Router,
     private store: Store<AppState>,
-  ) { 
+  ) {
     this.store.pipe(
       select(selectAuthentificationStatus),
       filter(val => val !== undefined)
@@ -32,7 +32,7 @@ export class LoginPageComponent {
 
   loginUser(event: Event) {
     event.preventDefault();
-    this.store.dispatch(login({
+    this.store.dispatch(loginAction({
       username: this.userLogin,
       password: this.userPassword
     }));

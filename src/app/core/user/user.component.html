@@ -1,4 +1,4 @@
-<div *ngIf="isAuthentificated">
-  <p class="user-login">{{firstName}} {{lastName}}</p>
+<div *ngIf="isAuthentificated && user">
+  <p class="user-login">{{user.name.first}} {{user.name.last}}</p>
   <button class="log-out" (click)="handleLogoutClick()">Log OFF</button>
 </div>

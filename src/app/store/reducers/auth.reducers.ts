@@ -4,9 +4,9 @@ import { initialAuthState, AuthState } from '../state/auth.state';
 
 const authReducer = createReducer(
     initialAuthState,
-    on(AuthActions.login, state => ({ ...state, isLoading: true })),
-    on(AuthActions.loginSuccess, state => ({ ...state, isAuthentificated: true})),
-    on(AuthActions.loginReject, (state, { errorCode }) => {
+    on(AuthActions.loginAction, state => ({ ...state, isLoading: true })),
+    on(AuthActions.loginSuccessAction, state => ({ ...state, isAuthentificated: true})),
+    on(AuthActions.loginRejectAction, (state, { errorCode }) => {
         console.log(errorCode);
         return { 
             ...state,
@@ -14,9 +14,18 @@ const authReducer = createReducer(
             errorType: errorCode
         }
     }),
-    on(AuthActions.logout, state => ({ ...state })),
-    on(AuthActions.getUserInfo, state => ({ ... state})),
-    on(AuthActions.getUserInfoSuccess, (state, { user }) => {
+    on(AuthActions.logoutAction, state => ({
+        ...state,
+        isLoading: true,
+    })),
+    on(AuthActions.logoutSuccessAction, state => ({ 
+        ...state,
+        isAuthentificated: false,
+        isLoading: false,
+        user: null,
+    })),
+    on(AuthActions.getUserInfoAction, state => ({ ... state})),
+    on(AuthActions.getUserInfoSuccessAction, (state, { user }) => {
         console.log(user);
         return {
             ...state,
@@ -25,7 +34,7 @@ const authReducer = createReducer(
             user: user,
         };
     }),
-    on(AuthActions.getUserInfoReject, (state, { errorCode }) => {
+    on(AuthActions.getUserInfoRejectAction, (state, { errorCode }) => {
         console.log(errorCode);
         return {
             ...state,
