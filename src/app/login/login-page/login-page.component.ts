@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { AppState } from 'src/app/store/state/app.state';
+import { AppState } from '../../store/state/app.state';
 import { loginAction } from '../../store/actions/auth.actions'
 import { selectAuthentificationStatus } from '../../store/selectors/auth.selector';
 import { filter } from 'rxjs/operators';

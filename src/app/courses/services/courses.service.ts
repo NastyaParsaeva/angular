@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CourseItemComponent } from './course-item/course-item.component';
+import { CourseItemComponent } from '../course-item/course-item.component';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { CourseItem } from './course-item.model';
+import { CourseItem } from '../course-item.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ConvertCourseItemToServiceCoursePipe } from './convert-course-item-to-service-course.pipe';
-import { ConvertServiceCourseToCourseItemPipe } from './convert-service-course-to-course-item.pipe';
+import { ConvertCourseItemToServiceCoursePipe } from '../convert-course-item-to-service-course.pipe';
+import { ConvertServiceCourseToCourseItemPipe } from '../convert-service-course-to-course-item.pipe';
 
 const BASE_URL = 'http://localhost:3004/courses';
 

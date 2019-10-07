@@ -7,7 +7,7 @@ import * as AuthActions from '../actions/auth.actions';
 import { of, Observable } from 'rxjs';
 import { AppState } from '../state/app.state';
 import { Store } from '@ngrx/store';
-import { User } from 'src/app/core/user.model';
+import { User } from '../../core/user.model';
 import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Injectable()
