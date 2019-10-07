@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import * as authReducer from './store/reducers/auth.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effect';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -33,8 +34,12 @@ import { AuthEffects } from './store/effects/auth.effect';
     CoursesRootModule,
     RouterModule.forRoot(ROUTES),
     SharedModule.forRoot(),
-    StoreModule.forRoot({ auth: authReducer.reducer }),
-    EffectsModule.forRoot([AuthEffects])
+    StoreModule.forRoot({ authentification: authReducer.reducer }),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      // logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
