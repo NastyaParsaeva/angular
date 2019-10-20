@@ -4,9 +4,9 @@
 </div>
 
 <div>
-  <p *ngIf="isCoursesEmpty()">No courses found</p>
+  <p *ngIf="(courseItems$ | async) && !(courseItems$ | async).length">No courses found</p>
   <app-course-item
-  *ngFor="let item of courseItems | orderBy: !creationDate"
+  *ngFor="let item of (courseItems$ | async) | orderBy: !creationDate"
   [id]="item.id"
   [title]="item.title"
   [creationDate]="item.creationDate"

@@ -1,6 +1,6 @@
 <div class="add-course-container">
-  <h2 class="new-course-form-title" *ngIf="!courseItem">New Course</h2>
-  <div class="add-course-form">
+  <h2 class="new-course-form-title" *ngIf="!itemId">New Course</h2>
+  <div class="add-course-form" *ngIf="courseItem">
     <p class="course-title input-caption">Title</p>
     <input class="course-title input-field" type="text" name="title" [(ngModel)]="courseItem.title"/>
     <app-course-description [(description)]="courseItem.description"></app-course-description>

@@ -32,12 +32,20 @@ export class CoursesService {
     }))
   }
 
-  getAllCourses(): Observable<CourseItem[]> {
-    return this.http.get<any>(BASE_URL).pipe(map(data => {
-      return data.map(item => {
-        return this.serviceCourseToCourseItemConverter.transform(item);
-      });
-    }));
+  getAllCourses(searchString: string): Observable<CourseItem[]> {
+    if (searchString === '') {
+      return this.http.get<CourseItem[]>(BASE_URL).pipe(map(data => {
+        return data.map(item => {
+          return this.serviceCourseToCourseItemConverter.transform(item);
+        });
+      }));
+    } else {
+      return this.http.get<CourseItem[]>(BASE_URL, {params: {searchString}}).pipe(map(data => {
+        return data.map(item => {
+          return this.serviceCourseToCourseItemConverter.transform(item);
+        });
+      }));
+    }
   }
 
   getItemById(id) {
@@ -46,13 +54,9 @@ export class CoursesService {
     }));
   }
 
-  getFilteredItems(textFragment: string): Observable<CourseItem[]> {
-    return this.http.get<CourseItem[]>(BASE_URL, {params: {textFragment}}).pipe(map(data => {
-      return data.map(item => {
-        return this.serviceCourseToCourseItemConverter.transform(item);
-      });
-    }));
-  }
+  // getFilteredItems(textFragment: string): Observable<CourseItem[]> {
+    
+  // }
 
   createCourse(item) {
     const newCourseItem = this.courseItemToServiceCourseConverter.transform(item);

@@ -7,7 +7,6 @@ const authReducer = createReducer(
     on(AuthActions.loginAction, state => ({ ...state, isLoading: true })),
     on(AuthActions.loginSuccessAction, state => ({ ...state, isAuthentificated: true})),
     on(AuthActions.loginRejectAction, (state, { errorCode }) => {
-        console.log(errorCode);
         return { 
             ...state,
             isLoading: false,
@@ -26,7 +25,6 @@ const authReducer = createReducer(
     })),
     on(AuthActions.getUserInfoAction, state => ({ ... state})),
     on(AuthActions.getUserInfoSuccessAction, (state, { user }) => {
-        console.log(user);
         return {
             ...state,
             isLoading: false,
@@ -35,7 +33,6 @@ const authReducer = createReducer(
         };
     }),
     on(AuthActions.getUserInfoRejectAction, (state, { errorCode }) => {
-        console.log(errorCode);
         return {
             ...state,
             isLoading: false,

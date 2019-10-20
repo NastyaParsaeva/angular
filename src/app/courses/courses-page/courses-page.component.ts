@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CourseItem } from '../models/course-item.model';
 import { CoursesService } from '../services/courses.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { Subject, Observable } from 'rxjs';
+import { debounceTime, filter } from 'rxjs/operators';
+import { AppState } from 'src/app/store/state/app.state';
+import { Store, select } from '@ngrx/store';
+import { getCourseListAction } from '../actions/courses-list.actions';
+import { selectCoursesList } from '../selector/courses-list.selector';
 
 @Component({
   selector: 'app-courses-page',
@@ -12,55 +16,47 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class CoursesPageComponent implements OnInit {
 
-  public courseItems: CourseItem[] = [];
-
-  public coursesTotalAmount: number;  
-
+  public courseItems$: Observable<CourseItem[]>;
+  public coursesTotalAmount: number;
   public courseIdToDelete: number;
-  
   public modal;
 
   private search$: Subject<string> = new Subject();
 
   constructor(
     private coursesService: CoursesService, 
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>,
   ) {}
 
   ngOnInit() {
-    this.getCoursesAmount();
     this.modal = document.getElementById('deleteConfirmationModal');
+    this.store.dispatch(getCourseListAction({ searchString: '' }));
+    this.courseItems$ = this.store.pipe(
+      select(selectCoursesList),
+      filter(courses => courses !== null)
+    );
+    
     this.search$.pipe(
       debounceTime(250)
     ).subscribe(query => {
       if (query.length >= 3) {
-        console.log(query);
-        this.filterCourseItems(query);
+        this.store.dispatch(getCourseListAction({ searchString: query }));
       }
     })
   }
 
-  getCoursesAmount() {
-    this.coursesService.getCoursesAmount().subscribe(data => {
-      this.coursesTotalAmount = data;
-      this.getCurrentPageCourses(0, 10);
-    });
-  }
-
   getCurrentPageCourses(start: number, count: number) {
     this.coursesService.getCoursesForPage(start, count).subscribe(response => {
-      console.log(response);
-      this.courseItems = response;
     });
   }
 
   switchToPage(pageParams) {
-    console.log(pageParams);
     this.getCurrentPageCourses(pageParams.start, pageParams.count);
   }
 
   isCoursesEmpty() {
-    return !(this.courseItems.length > 0);
+    // return !(this.courseItems.length > 0);
   }
 
   showDeleteConfirmationPopup(courseItem: CourseItem): void {
@@ -76,19 +72,11 @@ export class CoursesPageComponent implements OnInit {
   deleteCourseItem() {
     this.coursesService.removeItem(this.courseIdToDelete).subscribe(() => {
       this.closeDeleteConfirmationPopup();
-      this.getCoursesAmount();
     });    
   }
 
   editCourseItem(courseItem: CourseItem) {
     this.router.navigate( ['courses/', courseItem.id]);
-  }
-
-  filterCourseItems(queryString: string) {
-    this.coursesService.getFilteredItems(queryString).subscribe(response => {
-      this.courseItems = response;
-      console.log(response);
-    });
   }
 
 }

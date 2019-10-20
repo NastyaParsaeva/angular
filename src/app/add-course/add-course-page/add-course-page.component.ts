@@ -1,7 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CourseItem } from '../../courses/models/course-item.model';
-import { CoursesService } from '../../courses/services/courses.service';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../store/state/app.state';
+import { filter } from 'rxjs/operators';
+import { getCourseItemByIdAction,
+         saveCourseItemAction,
+         getEmptyCourseItemAction
+} from '../../courses/actions/courses-list.actions';
+import { selectCourseItem, selectSaveItemStatus } from '../../courses/selector/courses-list.selector';
 
 @Component({
   selector: 'app-add-course-page',
@@ -10,48 +17,52 @@ import { CoursesService } from '../../courses/services/courses.service';
 })
 export class AddCoursePageComponent implements OnInit {
   
-  @Input() courseItem: CourseItem = {
-    id: null,
-    title: '',
-    creationDate: new Date(),
-    duration: null,
-    description: '',
-    isTopRated: false,
-  };
+  public courseItem: CourseItem;
+  public itemId: number;
+  public isSavedSuccess: boolean;
 
-  public routeParams: any = {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private store: Store<AppState>,
+  ) {
 
-  constructor(private router: Router, private route: ActivatedRoute, private coursesService: CoursesService) { }
+  }
 
   ngOnInit() {
     this.route.params.subscribe( (data) => {
-      this.routeParams.id = data['id']
-      if (this.routeParams.id) {
-        this.coursesService.getItemById(this.routeParams.id).subscribe(response => {
-          console.log(response);
-          this.courseItem = response;
-        });
+      this.itemId = data['id'];
+      if (this.itemId) {
+        this.store.dispatch(getCourseItemByIdAction({ courseId: this.itemId }));
+      } else {
+        this.store.dispatch(getEmptyCourseItemAction());
+      }
+    });
+
+    this.store.pipe(
+      select(selectCourseItem),
+      filter(course => !!course),
+    ).subscribe((course) => {
+      this.courseItem = course;
+    });
+
+    this.store.pipe(
+      select(selectSaveItemStatus)
+    ).subscribe(isSaved => {
+      this.isSavedSuccess = isSaved;
+      if (isSaved) {
+        this.router.navigateByUrl('courses');
       }
     })
   }
 
   saveCourse() {
-    if (this.courseItem.id !== null) {
-      this.coursesService.updateCourse(this.courseItem).subscribe(response => {
-        console.log(response);
-        this.router.navigateByUrl('courses');
-      });
-    } else {
-      this.coursesService.createCourse(this.courseItem).subscribe(response => {
-        console.log(response);
-        this.router.navigateByUrl('courses');
-      });
+    if (this.itemId !== null) {
+      this.store.dispatch(saveCourseItemAction({ item: this.courseItem, id: this.itemId })) 
     }
-    
   }
 
   cancel() {
-    console.log('action canceled');
     this.router.navigateByUrl('courses');
   }
 
